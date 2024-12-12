@@ -22,8 +22,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define WINDOW_WIDTH 64
-# define WINDOW_HEIGHT 64
 # define TILE_SIZE 64
 
 # define ESC_KEY 65307
@@ -31,38 +29,36 @@
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
-# define W_KEY 119
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-
-typedef struct	s_player_move {
-	int	x;
-	int	y;
-}	t_player_move;
-
-typedef struct	s_textures {
-	void	*wall;
-	void	*floor;
-	void	*player;
-	void	*coin;
-	void	*exit;
-}	t_textures;
-
-typedef struct  s_window {
-	void	*mlx;
-	void	*mlx_win;
-	void	*wall_image;
-	int		img_width;
-	int		img_height;
-	t_player_move	*player;
-}	t_window;
-
-typedef struct	s_map_size {
-	int	len_x;
-	int	len_y;
-}	t_map_size;
 
 
+typedef struct s_player_move {
+    int x;  
+    int y;  
+}   t_player_move;
+
+typedef struct s_textures {
+    void    *wall;     
+    void    *floor;   
+    void    *player;  
+    void    *coin;  
+    void    *exit;  
+}   t_textures;
+
+
+typedef struct s_window {
+    void            *mlx;
+    void            *mlx_win;
+    char            **map;
+    int             img_width; 
+    int             img_height;
+    t_player_move   *player; 
+    t_textures      textures;
+}   t_window;
+
+
+typedef struct s_map_size {
+    int len_x;
+    int len_y;
+}   t_map_size;
 
 #endif
