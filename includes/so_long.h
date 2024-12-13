@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:14:47 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/12 16:29:44 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/13 11:25:45 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -31,10 +31,11 @@
 # define RIGHT_KEY 65363
 
 
-typedef struct s_player_move {
+typedef struct s_player_move_and_data {
     int x;  
-    int y;  
-}   t_player_move;
+    int y;
+    int coins;
+}   t_player_move_and_data;
 
 typedef struct s_textures {
     void    *wall;     
@@ -44,6 +45,11 @@ typedef struct s_textures {
     void    *exit;  
 }   t_textures;
 
+typedef struct s_map_size {
+    int len_x;
+    int len_y;
+    int count_coins_map;
+}   t_map_size;
 
 typedef struct s_window {
     void            *mlx;
@@ -51,14 +57,12 @@ typedef struct s_window {
     char            **map;
     int             img_width; 
     int             img_height;
-    t_player_move   *player; 
+    int			cox;
+    t_player_move_and_data   *player; 
     t_textures      textures;
+    t_map_size	*map_size;
 }   t_window;
 
 
-typedef struct s_map_size {
-    int len_x;
-    int len_y;
-}   t_map_size;
 
 #endif

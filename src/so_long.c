@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:15:05 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/12 16:33:56 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/13 12:13:34 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -50,69 +50,134 @@ char **read_map(char *filename)
     return (res_map);
 }
 
-void render_map(void *mlx, void *mlx_win, t_textures textures, char **map, t_player_move player)
+void render_map(t_textures textures, t_window *window, t_player_move_and_data player)
 {
     int i;
     int j;
 
     i = 0;
-    while (map[i])
+    //printf("cooc: %d\n", window->cox);
+    while (window->map[i])
     {
         j = 0;
-        while (map[i][j])
+        while (window->map[i][j])
         {
-            if (map[i][j] == '1')
-                mlx_put_image_to_window(mlx, mlx_win, textures.wall, j * TILE_SIZE, i * TILE_SIZE); 
-            else if (map[i][j] == '0')
-                mlx_put_image_to_window(mlx, mlx_win, textures.floor, j * TILE_SIZE, i * TILE_SIZE);
-            else if (map[i][j] == 'C')
-                mlx_put_image_to_window(mlx, mlx_win, textures.coin, j * TILE_SIZE, i * TILE_SIZE);
-            else if (map[i][j] == 'E')
-                mlx_put_image_to_window(mlx, mlx_win, textures.exit, j * TILE_SIZE, i * TILE_SIZE);
-            if (i == player.y && j == player.x)
-                mlx_put_image_to_window(mlx, mlx_win, textures.player, j * TILE_SIZE, i * TILE_SIZE);
+            if (window->map[i][j] == '1')
+                mlx_put_image_to_window(window->mlx, window->mlx_win, textures.wall, j * TILE_SIZE, i * TILE_SIZE); 
+            else if (window->map[i][j] == '0')
+                mlx_put_image_to_window(window->mlx, window->mlx_win, textures.floor, j * TILE_SIZE, i * TILE_SIZE);
+            else if (window->map[i][j] == 'C')
+                mlx_put_image_to_window(window->mlx, window->mlx_win, textures.coin, j * TILE_SIZE, i * TILE_SIZE);
+            else if (window->map[i][j] == 'E' && window->cox == player.coins)
+	    {
+                mlx_put_image_to_window(window->mlx, window->mlx_win, textures.exit, j * TILE_SIZE, i * TILE_SIZE);
+		printf("opening door\n");
+		if (window->map[window->player->y][window->player->x] == 'E')
+			exit(EXIT_SUCCESS);
+	    }
+	    printf("xx: %d\nyy: %d\n", player.x, player.y);
+	    if (i == player.y && j == player.x)
+                mlx_put_image_to_window(window->mlx, window->mlx_win, textures.player, j * TILE_SIZE, i * TILE_SIZE);
             j++;
         }
         i++;
     }
+    //printf("count coin player: %d\n", window->player->coins);
+    //printf("count coin map: %d\n", window-);
 }
 
-void    size_map(char **map, t_map_size *map_size)
+void    size_map(t_window *window, t_map_size *map_size)
 {
     int x;
     int y;
+    int i;
+    int j; 
 
     x = 0;
     y = 0;
-    while (map[y])
+    i = 0; 
+    window->cox = 0; 
+    while (window->map[i])
     {
-        y++;
-    }
-    map_size->len_y = y;
-    while (map[0][x] != '\n')
+	    j = 0;
+	    while (window->map[i][j])
+	    {
+		    if (window->map[i][j] == 'C')
+			   window->cox += 1;
+		    j++;
+	    }
+	    i++;
+    } 
+    while (window->map[y])
     {
-        x++;
+	    y++;
     }
-    map_size->len_x = x;
+    map_size->len_y += y;
+    while (window->map[0][x] != '\n')
+    {
+	    x++;
+    }
+    map_size->len_x += x;
 }
+
+void	eat_coins(t_window *window);
 
 int handle_keypress(int keycode, t_window *window)
 {
-    t_player_move *player = window->player;
+    t_player_move_and_data *player = window->player;
 
     if (keycode == ESC_KEY)
         exit(EXIT_SUCCESS);
-    if (keycode == 'D' || keycode == 'd'|| keycode == RIGHT_KEY)
+    if ((keycode == 'D' || keycode == 'd'|| keycode == RIGHT_KEY)
+		    && window->map[window->player->y][window->player->x + 1] != '1')
         window->player->x += 1;
-    else if (keycode == 'A' || keycode == 'a'|| keycode == LEFT_KEY)
+    else if ((keycode == 'A' || keycode == 'a'|| keycode == LEFT_KEY) 
+		    && window->map[window->player->y][window->player->x - 1] != '1')
         window->player->x -= 1;
-    else if (keycode == 'W' || keycode == 'w'|| keycode == UP_KEY)
+    else if ((keycode == 'W' || keycode == 'w'|| keycode == UP_KEY) 
+		    && window->map[window->player->y - 1][window->player->x] != '1')
         window->player->y -= 1;
-    else if (keycode == 'S' || keycode == 's'|| keycode == DOWN_KEY)
+    else if ((keycode == 'S' || keycode == 's'|| keycode == DOWN_KEY) 
+		    && window->map[window->player->y + 1][window->player->x] != '1')
         window->player->y += 1;
     mlx_clear_window(window->mlx, window->mlx_win);
-    render_map(window->mlx, window->mlx_win, window->textures, window->map, *player);
+    eat_coins(window);
+   // printf("count coin: %d\n", window->player->coins);
+    render_map(window->textures, window, *player);
     return (0);
+}
+
+void	eat_coins(t_window *window)
+{
+	if (window->map[window->player->y][window->player->x] == 'C')
+	{
+		window->map[window->player->y][window->player->x] = '0';
+		window->player->coins += 1;
+	}
+
+}
+
+void	check_player_map(t_window window, t_player_move_and_data *player)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (window.map[y])
+	{
+		x = 0;
+		while (window.map[y][x])
+		{
+			if (window.map[y][x] == 'P')
+			{
+				player->x = x;
+				player->y = y;
+				//printf("x: %d\ny: %d\n", x, y);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 int main(int ac, char **av)
@@ -120,7 +185,7 @@ int main(int ac, char **av)
     t_window        window;
     t_textures      textures;
     t_map_size      map_size;
-    t_player_move   player;
+    t_player_move_and_data   player;
 
     if (ac != 2)
         print_message("Usage: ./so_long <map_file>\n", 2);
@@ -128,9 +193,10 @@ int main(int ac, char **av)
     if (!window.mlx)
         print_message("Error: x server\n", 2);
     window.map = read_map(av[1]);
-    size_map(window.map, &map_size);
-    player.x = 1;
-    player.y = 1;
+    size_map(&window, &map_size);
+    check_player_map(window, &player);
+    //player.x = window.player;
+    //player.y = 2;
     window.player = &player;
     window.mlx_win = mlx_new_window(window.mlx, map_size.len_x * TILE_SIZE, map_size.len_y * TILE_SIZE, "GTA SAN");
     if (!window.mlx_win)
@@ -143,10 +209,9 @@ int main(int ac, char **av)
     if (!textures.wall || !textures.floor || !textures.player || !textures.coin || !textures.exit)
         print_message("Error: Failed to load textures\n", 2);
     window.textures = textures;
-    render_map(window.mlx, window.mlx_win, textures, window.map, player);
+    render_map(textures, &window, player);
     mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
     mlx_key_hook(window.mlx_win, handle_keypress, &window);
     mlx_loop(window.mlx);
-
     exit(EXIT_SUCCESS);
 }
