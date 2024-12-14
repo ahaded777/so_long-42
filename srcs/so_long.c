@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:15:05 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/14 16:07:10 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/14 20:51:48 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -47,9 +47,10 @@ void	init_map_data(t_window *window, t_map_size *map_size,
 
 void	init_environment(t_window *window, char *filename)
 {
+	ft_check_elements(filename);
 	window->mlx = mlx_init();
 	if (!window->mlx)
-		print_message("Error: x server\n", 2);
+		print_message("Error: Failed to initialize mlx (X server problem)\n", 2);
 	window->map = read_map(filename);
 	if (!window->map)
 		print_message("Error: Failed to read map\n", 2);

@@ -2,7 +2,7 @@ NAME = so_long
 
 #SRC_OBJS
 SRCS = $(PATH_SRCS)/so_long.c $(PATH_SRCS)/free_map.c $(PATH_SRCS)/close_window.c \
-	$(PATH_SRCS_CHMPS)/check_map.c $(PATH_SRCS_CHMPS)/check_map_utils.c \
+	$(PATH_SRCS_CHMPS)/check_map.c $(PATH_SRCS_CHMPS)/check_map_utils.c $(PATH_SRCS_CHMPS)/check_elements.c \
 	$(PATH_SRCS_CHPLAY)/check_player.c $(PATH_SRCS_CHPLAY)/read_maps.c 
 OBJS = $(SRCS:.c=.o)
 

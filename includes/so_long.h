@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:14:47 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/14 15:00:15 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/14 20:50:52 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
+
+typedef struct s_exit_coins
+{
+	int				num_exit;
+	int				coins_;
+}					t_exit_coins;
 
 typedef struct s_render_index
 {
@@ -86,5 +92,6 @@ void				size_map(t_window *window, t_map_size *map_size);
 void				check_player_map(t_window window, t_player_move *player);
 void				render_map(t_textures textures, t_window *window,
 						t_player_move player);
+void				ft_check_elements(char *filename);
 
 #endif

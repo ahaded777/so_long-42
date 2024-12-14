@@ -6,7 +6,7 @@
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:37:30 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/14 13:35:38 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/14 20:10:52 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/so_long.h"
@@ -57,38 +57,34 @@ int	total_coins_count(char **map)
 	return (count);
 }
 
-int	flood_fill(char **map, int x, int y, int *coins)
+int	flood_fill(char **map, int x, int y, t_exit_coins *exicoin)
 {
-	int	exit_found;
-
-	exit_found = 0;
 	if (map[y][x] == '1' || map[y][x] == 'X')
 		return (0);
 	if (map[y][x] == 'C')
-		(*coins)++;
+		exicoin->coins_++;
 	if (map[y][x] == 'E')
-		exit_found = 1;
+		exicoin->num_exit = 1;
 	map[y][x] = 'X';
-	flood_fill(map, x + 1, y, coins);
-	flood_fill(map, x - 1, y, coins);
-	flood_fill(map, x, y + 1, coins);
-	flood_fill(map, x, y - 1, coins);
-	return (exit_found);
+	flood_fill(map, x + 1, y, exicoin);
+	flood_fill(map, x - 1, y, exicoin);
+	flood_fill(map, x, y + 1, exicoin);
+	flood_fill(map, x, y - 1, exicoin);
+	return (0);
 }
 
 void	check_map(char **map, int player_x, int player_y)
 {
-	int	coins;
-	int	exit_found;
-	int	total_coins;
+	t_exit_coins	exicoin;
+	int				total_coins;
 
-	coins = 0;
-	exit_found = 0;
+	exicoin.num_exit = 0;
+	exicoin.coins_ = 0;
 	total_coins = total_coins_count(map);
-	exit_found = flood_fill(map, player_x, player_y, &coins);
-	if (coins < total_coins)
+	flood_fill(map, player_x, player_y, &exicoin);
+	if (exicoin.coins_ < total_coins)
 		print_message("Error: All coins are not accessible\n", 2);
-	if (!exit_found)
+	if (!exicoin.num_exit)
 		print_message("Error: Exit is not reachable\n", 2);
 }
 
