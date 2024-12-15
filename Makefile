@@ -3,13 +3,14 @@ NAME = so_long
 #SRCS_OBJS
 SRCS = $(PATH_SRCS)/so_long.c $(PATH_SRCS)/free_map.c $(PATH_SRCS)/close_window.c \
 	$(PATH_SRCS_CHMPS)/check_map.c $(PATH_SRCS_CHMPS)/check_map_utils.c $(PATH_SRCS_CHMPS)/check_elements.c \
-	$(PATH_SRCS_CHPLAY)/check_player.c $(PATH_SRCS_CHPLAY)/read_maps.c 
+	$(PATH_SRCS_CHPLAY)/check_player.c $(PATH_SRCS_CHPLAY)/read_maps.c $(PATH_SRCS_CHPLAY)/check_player_ul.c
 OBJS = $(SRCS:.c=.o)
 
 #SRCS_BONUS
 SRCS_BONUS = $(PATH_SRCS_BONUS)/so_long_bonus.c $(PATH_SRCS_BONUS)/free_map_bonus.c $(PATH_SRCS_BONUS)/close_window_bonus.c \
 	$(PATH_SRCS_CHMPS_BONUS)/check_map_bonus.c $(PATH_SRCS_CHMPS_BONUS)/check_map_utils_bonus.c $(PATH_SRCS_CHMPS_BONUS)/check_elements_bonus.c \
-	$(PATH_SRCS_CHPLAY_BONUS)/check_player_bonus.c $(PATH_SRCS_CHPLAY_BONUS)/read_maps_bonus.c 
+	$(PATH_SRCS_CHPLAY_BONUS)/check_player_bonus.c $(PATH_SRCS_CHPLAY_BONUS)/read_maps_bonus.c $(PATH_SRCS_CHPLAY_BONUS)/check_player_ul_bonus.c 
+	#$(PATH_SRCS_ELEME_ANIM_BONUS)/coin_animations_bonus.c
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 #GET_NEXT_LINE_SRC_OBJS
@@ -25,6 +26,7 @@ PATH_SRCS_CHPLAY = ./srcs/check_player_remap
 PATH_SRCS_BONUS = ./srcs_bonus
 PATH_SRCS_CHMPS_BONUS = ./srcs_bonus/check_maps_bonus
 PATH_SRCS_CHPLAY_BONUS = ./srcs_bonus/check_player_remap_bonus
+#PATH_SRCS_ELEME_ANIM_BONUS = ./srcs_bonus/elements_animations
 
 
 #GET_NEXT_LINE

@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:08:05 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:08:07 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:12:25 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:12:27 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 int	ft_check_wall_up(char **map)
 {

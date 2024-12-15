@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   read_maps_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:08:50 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:08:53 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:12:47 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:12:49 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 char	**read_map(char *filename)
 {
@@ -38,21 +38,6 @@ char	**read_map(char *filename)
 	return (res_map);
 }
 
-void	render_map_door(t_window *window, t_player_move player,
-		t_textures textures, t_render_index *index)
-{
-	if (window->count_coins == player.coins)
-	{
-		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.exit,
-			index->j * TILE_SIZE, index->i * TILE_SIZE);
-		if (window->map[window->player->y][window->player->x] == 'E')
-			print_message("YOU WIN!\n", 1);
-	}
-	else
-		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.ex_op,
-			index->j * TILE_SIZE, index->i * TILE_SIZE);
-}
-
 void	render_tile(t_window *window, t_textures textures,
 		t_render_index *indexx, t_player_move player)
 {
@@ -63,13 +48,18 @@ void	render_tile(t_window *window, t_textures textures,
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.floor,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	else if (window->map[indexx->i][indexx->j] == 'C')
+	{
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.coin,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
+	}
+		// mlx_put_image_to_window(window->mlx, window->mlx_win, textures.coin,
+		// 	indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	else if (window->map[indexx->i][indexx->j] == 'P')
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.floor,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	else if (window->map[indexx->i][indexx->j] == 'E')
-		render_map_door(window, player, textures, indexx);
+		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.ex_op,
+			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	if (indexx->i == player.y && indexx->j == player.x)
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.player,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);

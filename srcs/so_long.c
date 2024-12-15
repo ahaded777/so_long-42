@@ -44,6 +44,7 @@ void	init_map_data(t_window *window, t_map_size *map_size,
 {
 	size_map(window, map_size);
 	check_player_map(*window, player);
+	//printf("i: %d\nj: %d\n", window->index_door.i, window->index_door.j);
 	window->player = player;
 }
 
@@ -71,7 +72,7 @@ int	main(int ac, char **av)
 	init_environment(&window, av[1]);
 	init_map_data(&window, &map_size, &player);
 	window.mlx_win = mlx_new_window(window.mlx, map_size.len_x * TILE_SIZE,
-			map_size.len_y * TILE_SIZE, "GTA SAN");
+		map_size.len_y * TILE_SIZE, "GAME");
 	if (!window.mlx_win)
 		print_message("Error: Failed to create window\n", 2);
 	load_textures(&window, &textures);

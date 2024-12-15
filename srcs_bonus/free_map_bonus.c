@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   free_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:07:11 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:07:13 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:13:00 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:13:03 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	free_map(char **map)
 {

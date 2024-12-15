@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:07:44 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:07:53 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:12:18 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:12:21 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	find_player_position(char **map, t_player_move *player)
 {

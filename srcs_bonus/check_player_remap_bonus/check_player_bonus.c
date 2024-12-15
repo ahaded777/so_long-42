@@ -3,35 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   check_player_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:08:24 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:08:27 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:12:32 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:12:34 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/so_long.h"
-
-void	check_player_map(t_window window, t_player_move *player)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (window.map[y])
-	{
-		x = 0;
-		while (window.map[y][x])
-		{
-			if (window.map[y][x] == 'P')
-			{
-				player->x = x;
-				player->y = y;
-			}
-			x++;
-		}
-		y++;
-	}
-}
+#include "../../includes/so_long_bonus.h"
 
 void	eat_coins(t_window *window)
 {
@@ -42,11 +20,38 @@ void	eat_coins(t_window *window)
 	}
 }
 
+void	draw_player(t_window *window, int x, int y)
+{
+	mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.player, x * TILE_SIZE, y * TILE_SIZE);
+	if (window->map[y][x] == 'E'
+		&& window->count_coins == window->player->coins)
+		print_message("YOU WIN!\n", 1);
+}
+
+void	erase_tile(t_window *window, int x, int y)
+{
+	eat_coins(window);
+	mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.floor, x * TILE_SIZE, y * TILE_SIZE);
+	if (window->count_coins == window->player->coins)
+		mlx_put_image_to_window(window->mlx, window->mlx_win,
+			window->textures.exit, window->x * TILE_SIZE, window->y
+			* TILE_SIZE);
+	else
+		mlx_put_image_to_window(window->mlx, window->mlx_win,
+			window->textures.ex_op, window->x * TILE_SIZE, window->y
+			* TILE_SIZE);
+}
+
 int	handle_keypress(int keycode, t_window *window)
 {
-	t_player_move	*player;
+	int	old_x;
+	int	old_y;
 
-	player = window->player;
+	old_x = window->player->x;
+	old_y = window->player->y;
+	check_door_map(window);
 	if (keycode == ESC_KEY)
 		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
@@ -61,8 +66,7 @@ int	handle_keypress(int keycode, t_window *window)
 	else if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
 		&& window->map[window->player->y + 1][window->player->x] != '1')
 		window->player->y += 1;
-	mlx_clear_window(window->mlx, window->mlx_win);
-	eat_coins(window);
-	render_map(window->textures, window, *player);
+	erase_tile(window, old_x, old_y);
+	draw_player(window, window->player->x, window->player->y);
 	return (0);
 }

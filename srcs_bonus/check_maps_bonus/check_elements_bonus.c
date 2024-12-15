@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:07:27 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:07:31 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:12:10 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:12:13 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	check_double_charagter(int door, int player)
 {

@@ -29,6 +29,15 @@
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
 
+# define FRAME_COUNT 5
+
+typedef struct s_animation {
+    void    *coin_frames[FRAME_COUNT];
+    int     current_frame;
+    // int     coin_x;
+    // int     coin_y;
+} t_animation;
+
 typedef struct s_exit_coins
 {
 	int				num_exit;
@@ -72,9 +81,13 @@ typedef struct s_window
 	int				img_width;
 	int				img_height;
 	int				count_coins;
+	int				x;
+	int				y;
 	t_player_move	*player;
 	t_textures		textures;
 	t_map_size		*map_size;
+	t_render_index	index_door;
+	t_animation		*animation;
 }					t_window;
 
 void				free_map(char **map);
@@ -93,5 +106,8 @@ void				check_player_map(t_window window, t_player_move *player);
 void				render_map(t_textures textures, t_window *window,
 						t_player_move player);
 void				ft_check_elements(char *filename);
+void				check_door_map(t_window *window);
+void				check_player_map(t_window window, t_player_move *player);
+int	animate_coin(t_window *window);
 
 #endif

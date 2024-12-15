@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   close_window_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:06:41 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:06:44 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:12:53 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:12:56 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	close_window(void *par)
 {

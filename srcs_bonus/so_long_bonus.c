@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:06:54 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:06:57 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 22:13:07 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 22:13:08 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	print_message(char *message, int fd)
 {
@@ -34,6 +34,16 @@ void	load_textures(t_window *window, t_textures *textures)
 			&window->img_width, &window->img_height);
 	textures->ex_op = mlx_xpm_file_to_image(window->mlx, "./textures/ex_op.xpm",
 			&window->img_width, &window->img_height);
+	// window->animation->coin_frames[0] = mlx_xpm_file_to_image(window->mlx, "./textures/coins_/MonedaD_1.xpm",
+	// 		&window->img_width, &window->img_height);
+	// window->animation->coin_frames[1] = mlx_xpm_file_to_image(window->mlx, "./textures/coins_/MonedaD_2.xpm",
+	// 		&window->img_width, &window->img_height);
+	// window->animation->coin_frames[2] = mlx_xpm_file_to_image(window->mlx, "./textures/coins_/MonedaD_3.xpm",
+	// 		&window->img_width, &window->img_height);
+	// window->animation->coin_frames[3] = mlx_xpm_file_to_image(window->mlx, "./textures/coins_/MonedaD_4.xpm",
+	// 		&window->img_width, &window->img_height);
+	// window->animation->coin_frames[4] = mlx_xpm_file_to_image(window->mlx, "./textures/coins_/MonedaD_5.xpm",
+	// 		&window->img_width, &window->img_height);
 	if (!textures->wall || !textures->floor || !textures->player
 		|| !textures->coin || !textures->exit)
 		print_message("Error: Failed to load textures\n", 2);
@@ -58,6 +68,14 @@ void	init_environment(t_window *window, char *filename)
 		print_message("Error: Failed to read map\n", 2);
 }
 
+// int	animate_coin(t_window *window)
+// {
+// 	mlx_put_image_to_window(window->mlx, window->mlx_win, window->animation->coin_frames[window->animation->current_frame], 5 * TILE_SIZE, 5 * TILE_SIZE);
+// 	window->animation->current_frame = (window->animation->current_frame += 1) % FRAME_COUNT;
+// 	usleep(170000);
+// 	return (0);
+// }
+
 int	main(int ac, char **av)
 {
 	t_window		window;
@@ -71,7 +89,7 @@ int	main(int ac, char **av)
 	init_environment(&window, av[1]);
 	init_map_data(&window, &map_size, &player);
 	window.mlx_win = mlx_new_window(window.mlx, map_size.len_x * TILE_SIZE,
-			map_size.len_y * TILE_SIZE, "GTA SAN");
+		map_size.len_y * TILE_SIZE, "GAME");
 	if (!window.mlx_win)
 		print_message("Error: Failed to create window\n", 2);
 	load_textures(&window, &textures);
@@ -79,6 +97,7 @@ int	main(int ac, char **av)
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
 	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress, &window);
+	//mlx_loop_hook(window.mlx, animate_coin, &window);
 	mlx_loop(window.mlx);
 	exit(EXIT_SUCCESS);
 }
