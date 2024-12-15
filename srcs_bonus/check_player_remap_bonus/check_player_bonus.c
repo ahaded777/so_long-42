@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_player.c                                     :+:      :+:    :+:   */
+/*   check_player_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 14:13:26 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/15 14:02:28 by aahaded          ###   ########.fr       */
+/*   Created: 2024/12/15 14:08:24 by aahaded           #+#    #+#             */
+/*   Updated: 2024/12/15 14:08:27 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/so_long.h"
@@ -61,6 +61,7 @@ int	handle_keypress(int keycode, t_window *window)
 	else if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
 		&& window->map[window->player->y + 1][window->player->x] != '1')
 		window->player->y += 1;
+	mlx_clear_window(window->mlx, window->mlx_win);
 	eat_coins(window);
 	render_map(window->textures, window, *player);
 	return (0);
