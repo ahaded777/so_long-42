@@ -11,6 +11,16 @@
 /* ************************************************************************** */
 #include "../../includes/so_long.h"
 
+void	read_map_ul(char **line, int fd_file)
+{
+	*line = get_next_line(fd_file);
+	if (!*line)
+	{
+		close(fd_file);
+		print_message("\033[0;91mError\nempty map file\033[0;39m", 2);
+	}
+}
+
 char	**read_map(char *filename)
 {
 	int		fd_file;
@@ -21,17 +31,19 @@ char	**read_map(char *filename)
 	i = 0;
 	fd_file = open(filename, O_RDONLY);
 	if (fd_file == -1)
-		print_message("Error: opening file", 2);
+		print_message("\033[0;91mError\nopening file\033[0;39m", 2);
 	res_map = malloc(sizeof(char *) * 100);
 	if (!res_map)
-		print_message("Error: allocating memory", 2);
-	while (1)
 	{
-		line = get_next_line(fd_file);
-		if (!line)
-			break ;
+		close(fd_file);
+		print_message("\033[0;91mError\nallocating memory\033[0;39m", 2);
+	}
+	read_map_ul(&line, fd_file);
+	while (line)
+	{
 		res_map[i] = line;
 		i++;
+		line = get_next_line(fd_file);
 	}
 	res_map[i] = NULL;
 	close(fd_file);

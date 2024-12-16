@@ -11,14 +11,45 @@
 /* ************************************************************************** */
 #include "../../includes/so_long.h"
 
-void	check_double_charagter(int door, int player)
+void	check_map_elements__zayad(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] != '\n' && map[i][j] != '\0')
+		{
+			if (map[i][j] != 'P' && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '1' && map[i][j] != '0')
+			{
+				free_map(map);
+				print_message("\033[0;91mError\nThe map contains invalid elements. Allowed elements are: 'P', 'E', 'C', '1', '0'.\n\033[0;39m", 2);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	check_double_charagter(int door, int player, char **map)
 {
 	if (door > 1 && player > 1)
-		print_message("Error: Multiple doors and players detected\n", 2);
+	{
+		free_map(map);
+		print_message("\033[0;91mError\nMultiple doors and players detected\n\033[0;39m", 2);
+	}
 	else if (door > 1)
-		print_message("Error: Multiple doors (E) detected in the map\n", 2);
+	{
+		free_map(map);
+		print_message("\033[0;91mError\nMultiple doors (E) detected in the map\n\033[0;39m", 2);
+	}
 	else if (player > 1)
-		print_message("Error: Multiple players (P) detected in the map\n", 2);
+	{
+		free_map(map);
+		print_message("\033[0;91mError\nMultiple players (P) detected in the map\n\033[0;39m", 2);
+	}
 }
 
 void	check_row_elements(char *row, int *door, int *player, int *coin)
@@ -38,20 +69,16 @@ void	check_row_elements(char *row, int *door, int *player, int *coin)
 	}
 }
 
-void	ft_check_elements(char *filename)
+void	ft_check_elements(char **map)
 {
 	int		i;
 	int		door;
 	int		coin;
 	int		player;
-	char	**map;
 
 	door = 0;
 	coin = 0;
 	player = 0;
-	map = read_map(filename);
-	if (!map)
-		print_message("Error: Failed to read map\n", 2);
 	i = 0;
 	while (map[i])
 	{
@@ -61,8 +88,8 @@ void	ft_check_elements(char *filename)
 	if (!door || !player || !coin)
 	{
 		free_map(map);
-		print_message("Error: Missing elements in the map\n", 2);
+		print_message("\033[0;91mError\nMissing elements in the map\n\033[0;39m", 2);
 	}
-	check_double_charagter(door, player);
-	free_map(map);
+	check_double_charagter(door, player, map);
+	check_map_elements__zayad(map);
 }

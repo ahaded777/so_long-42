@@ -26,7 +26,7 @@ void	draw_player(t_window *window, int x, int y)
 		window->textures.player, x * TILE_SIZE, y * TILE_SIZE);
 	if (window->map[y][x] == 'E'
 		&& window->count_coins == window->player->coins)
-		print_message("YOU WIN!\n", 1);
+		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 2);
 }
 
 void	erase_tile(t_window *window, int x, int y)

@@ -36,7 +36,7 @@ void	load_textures(t_window *window, t_textures *textures)
 			&window->img_width, &window->img_height);
 	if (!textures->wall || !textures->floor || !textures->player
 		|| !textures->coin || !textures->exit)
-		print_message("Error: Failed to load textures\n", 2);
+		print_message("\033[0;91mError\nFailed to load textures\n\033[0;39m", 2);
 }
 
 void	init_map_data(t_window *window, t_map_size *map_size,
@@ -44,19 +44,17 @@ void	init_map_data(t_window *window, t_map_size *map_size,
 {
 	size_map(window, map_size);
 	check_player_map(*window, player);
-	//printf("i: %d\nj: %d\n", window->index_door.i, window->index_door.j);
 	window->player = player;
 }
 
 void	init_environment(t_window *window, char *filename)
 {
-	ft_check_elements(filename);
 	window->mlx = mlx_init();
 	if (!window->mlx)
-		print_message("Error: Failed (X server problem)\n", 2);
+		print_message("\033[0;91mError\nFailed (X server problem)\n\033[0;39m", 2);
 	window->map = read_map(filename);
 	if (!window->map)
-		print_message("Error: Failed to read map\n", 2);
+		print_message("\033[0;91mError\nFailed to read map\n\033[0;39m", 2);
 }
 
 int	main(int ac, char **av)
@@ -67,14 +65,15 @@ int	main(int ac, char **av)
 	t_player_move	player;
 
 	if (ac != 2)
-		print_message("Usage: ./so_long <map_file>\n", 2);
+		print_message("\033[0;91mUsage: ./so_long <map_file>\n\033[0;39m", 2);
+	ft_check_filename(av[1]);
 	ft_check_map(av[1]);
 	init_environment(&window, av[1]);
 	init_map_data(&window, &map_size, &player);
 	window.mlx_win = mlx_new_window(window.mlx, map_size.len_x * TILE_SIZE,
 		map_size.len_y * TILE_SIZE, "GAME");
 	if (!window.mlx_win)
-		print_message("Error: Failed to create window\n", 2);
+		print_message("\033[0;91mError\nFailed to create window\n\033[0;39m", 2);
 	load_textures(&window, &textures);
 	window.textures = textures;
 	render_map(textures, &window, player);

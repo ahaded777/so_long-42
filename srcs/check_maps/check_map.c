@@ -32,7 +32,8 @@ void	find_player_position(char **map, t_player_move *player)
 		}
 		i++;
 	}
-	print_message("Error: Player not found on the map\n", 2);
+	free_map(map);
+	print_message("\033[0;91mError\nPlayer not found on the map\n\033[0;39m", 2);
 }
 
 int	total_coins_count(char **map)
@@ -83,25 +84,28 @@ void	check_map(char **map, int player_x, int player_y)
 	total_coins = total_coins_count(map);
 	flood_fill(map, player_x, player_y, &exicoin);
 	if (exicoin.coins_ < total_coins)
-		print_message("Error: All coins are not accessible\n", 2);
+	{
+		free_map(map);
+		print_message("\033[0;91mError\nAll coins are not accessible\n\033[0;39m", 2);
+	}
 	if (!exicoin.num_exit)
-		print_message("Error: Exit is not reachable\n", 2);
+	{
+		free_map(map);
+		printf("\033[0;91mError\nExit is not reachable\n\033[0;39m");
+	}
 }
 
 void	ft_check_map(char *filename)
 {
 	t_player_move	player;
 	char			**map;
-	int				len_wall_up;
-	int				len_wall_down;
 
 	map = read_map(filename);
 	if (!map)
-		print_message("Error: Failed to read map\n", 2);
-	len_wall_up = ft_check_wall_up(map);
-	len_wall_down = ft_check_wall_down(map);
-	ft_check_wall_up_and_down(len_wall_up, len_wall_down);
-	ft_check_wall_right_and_left(len_wall_up, map);
+		print_message("\033[0;91mError\nFailed to read map\n\033[0;39m", 2);
+	ft_check_map_v1(map);
+	ft_check_map_walls(map);
+	ft_check_elements(map);
 	find_player_position(map, &player);
 	check_map(map, player.x, player.y);
 	free_map(map);

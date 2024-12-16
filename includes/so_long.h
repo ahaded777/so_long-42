@@ -30,6 +30,12 @@
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
 
+# define DEF_COLOR = \033[0;39m
+# define GREEN = \033[0;92m
+# define BLUE = \033[0;94m
+# define CYAN = \033[0;96m
+# define RED = \033[0;91m
+
 typedef struct s_exit_coins
 {
 	int				num_exit;
@@ -87,17 +93,17 @@ void				ft_check_map(char *filename);
 char				**read_map(char *filename);
 int					ft_check_wall_up(char **map);
 int					close_window(void *par);
-int					ft_check_wall_down(char **map);
-int					ft_check_wall_up_and_down(int len_wall_up,
-						int len_wall_down);
 int					handle_keypress(int keycode, t_window *window);
-int					ft_check_wall_right_and_left(int len_wall, char **map);
 void				size_map(t_window *window, t_map_size *map_size);
 void				check_player_map(t_window window, t_player_move *player);
 void				render_map(t_textures textures, t_window *window,
 						t_player_move player);
-void				ft_check_elements(char *filename);
+void				ft_check_elements(char **map);
 void				check_door_map(t_window *window);
 void				check_player_map(t_window window, t_player_move *player);
+
+void	ft_check_map_v1(char **map);
+void	ft_check_map_walls(char **map);
+void    ft_check_filename(char *filename);
 
 #endif
