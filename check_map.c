@@ -91,7 +91,7 @@ void	check_map(char **map, int player_x, int player_y)
 	if (!exicoin.num_exit)
 	{
 		free_map(map);
-		printf("Error\nExit is not reachable\n");
+		print_message("Error\nExit is not reachable\n", 2);
 	}
 }
 
