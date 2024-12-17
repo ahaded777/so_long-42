@@ -33,8 +33,7 @@ void	find_player_position(char **map, t_player_move *player)
 		i++;
 	}
 	free_map(map);
-	print_message("Error\nPlayer not found on the map\n",
-		2);
+	print_message("Error\nPlayer not found on the map\n", 2);
 }
 
 int	total_coins_count(char **map)
@@ -87,8 +86,7 @@ void	check_map(char **map, int player_x, int player_y)
 	if (exicoin.coins_ < total_coins)
 	{
 		free_map(map);
-		print_message("Error\nAll coins are not accessible\n",
-			2);
+		print_message("Error\nAll coins are not accessible\n", 2);
 	}
 	if (!exicoin.num_exit)
 	{

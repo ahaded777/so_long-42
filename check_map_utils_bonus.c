@@ -16,10 +16,14 @@ void	ft_check_map_v1(char **map)
 	int	i;
 
 	if (!map[0] || !map[0][0] || !map)
-		print_message("Error: empty map file\n", 2);
+		print_message("Error\nempty map file\n", 2);
 	i = 0;
-	if (!map[0] || !map[1] || !map[2])
-		print_message("Error\nInvalid map, check your walls\n", 2);
+	while (map[i])
+	{
+		if (!map[i])
+			print_message("Error\nInvalid map, check your walls\n", 2);
+		i++;
+	}
 }
 
 void	ft_check_wall_right_left(char **map, int len_wall_up)
@@ -62,7 +66,7 @@ void	ft_check_map_walls(char **map)
 	int	len;
 
 	if (!map[0] || !map[0][0] || !map)
-		print_message("Error: empty map file", 2);
+		print_message("Error\nempty map file", 2);
 	i = 0;
 	j = 0;
 	len_wall = 0;

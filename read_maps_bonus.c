@@ -17,7 +17,7 @@ void	read_map_ul(char **line, int fd_file)
 	if (!*line)
 	{
 		close(fd_file);
-		print_message("\033[0;91mError\nempty map file\033[0;39m", 2);
+		print_message("Error\nempty map file\n", 2);
 	}
 }
 
@@ -31,12 +31,12 @@ char	**read_map(char *filename)
 	i = 0;
 	fd_file = open(filename, O_RDONLY);
 	if (fd_file == -1)
-		print_message("\033[0;91mError\nopening file\033[0;39m", 2);
+		print_message("Error\nopening file\n", 2);
 	res_map = malloc(sizeof(char *) * 100);
 	if (!res_map)
 	{
 		close(fd_file);
-		print_message("\033[0;91mError\nallocating memory\033[0;39m", 2);
+		print_message("Error\nallocating memory\n", 2);
 	}
 	read_map_ul(&line, fd_file);
 	while (line)
