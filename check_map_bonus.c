@@ -9,7 +9,7 @@
 /*   Updated: 2024/12/17 16:29:26 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./so_long.h"
+#include "./so_long_bonus.h"
 
 void	find_player_position(char **map, t_player_move *player)
 {

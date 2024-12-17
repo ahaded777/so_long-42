@@ -9,7 +9,7 @@
 /*   Updated: 2024/12/17 16:30:00 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./so_long.h"
+#include "./so_long_bonus.h"
 
 void	ft_check_map_v1(char **map)
 {

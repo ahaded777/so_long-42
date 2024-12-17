@@ -11,33 +11,22 @@
 /* ************************************************************************** */
 #include "./so_long.h"
 
-void	print_message(char *message, int fd)
-{
-	ft_putstr_fd("\033[0;91m", fd);
-	ft_putstr_fd(message, fd);
-	ft_putstr_fd("\033[0;39m", fd);
-	if (fd == 2)
-		exit(EXIT_FAILURE);
-	else
-		exit(EXIT_SUCCESS);
-}
-
 void	load_textures(t_window *window, t_textures *textures)
 {
 	textures->wall = mlx_xpm_file_to_image(window->mlx,
-			"./textures/walls/wall.xpm", &window->img_width,
+			"./textures/wall.xpm", &window->img_width,
 			&window->img_height);
 	textures->floor = mlx_xpm_file_to_image(window->mlx, "./textures/floor.xpm",
 			&window->img_width, &window->img_height);
 	textures->player = mlx_xpm_file_to_image(window->mlx, "./textures/p1.xpm",
 			&window->img_width, &window->img_height);
-	textures->coin = mlx_xpm_file_to_image(window->mlx, "./textures/coin.xpm",
+	textures->coin = mlx_xpm_file_to_image(window->mlx, "./textures/cs/c_1.xpm",
 			&window->img_width, &window->img_height);
 	textures->exit = mlx_xpm_file_to_image(window->mlx, "./textures/exit.xpm",
 			&window->img_width, &window->img_height);
 	if (!textures->wall || !textures->floor || !textures->player
 		|| !textures->coin || !textures->exit)
-		print_message("Error\nFailed to load textures\n",2);
+		print_message("Error\nFailed to load textures\n", 2);
 }
 
 void	init_map_data(t_window *window, t_map_size *map_size,

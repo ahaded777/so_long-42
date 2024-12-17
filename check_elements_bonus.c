@@ -9,7 +9,7 @@
 /*   Updated: 2024/12/17 18:33:57 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./so_long.h"
+#include "./so_long_bonus.h"
 
 void	check_map_elements__zayad(char **map)
 {

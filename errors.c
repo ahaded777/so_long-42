@@ -11,6 +11,17 @@
 /* ************************************************************************** */
 #include "./so_long.h"
 
+void	print_message(char *message, int fd)
+{
+	ft_putstr_fd("\033[0;91m", fd);
+	ft_putstr_fd(message, fd);
+	ft_putstr_fd("\033[0;39m", fd);
+	if (fd == 2)
+		exit(EXIT_FAILURE);
+	else
+		exit(EXIT_SUCCESS);
+}
+
 void	ft_check_filename(char *filename)
 {
 	char	**split_filename;

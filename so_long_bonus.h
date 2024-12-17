@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "./libft/get_next_line/get_next_line.h"
 # include "./libft/libft.h"
@@ -29,6 +29,18 @@
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
+# define COUNT_IMAGE_ANIM 6
+
+// typedef struct s_textures
+// {
+// 	void			*wall;
+// 	void			*floor;
+// 	void			*player;
+// 	void			*coin;
+// 	void			*exit;
+// 	void			*coin_frames[COUNT_IMAGE_ANIM];
+// 	int				index_arr_coins;
+// }					t_textures;
 
 typedef struct s_exit_coins
 {
@@ -56,6 +68,8 @@ typedef struct s_textures
 	void			*player;
 	void			*coin;
 	void			*exit;
+	void			*coin_frames[COUNT_IMAGE_ANIM];
+	int				count_frames;
 }					t_textures;
 
 typedef struct s_map_size
@@ -98,5 +112,6 @@ void				check_player_map(t_window window, t_player_move *player);
 void				ft_check_map_v1(char **map);
 void				ft_check_map_walls(char **map);
 void				ft_check_filename(char *filename);
+int					animation_coins(t_window *window);
 
 #endif
