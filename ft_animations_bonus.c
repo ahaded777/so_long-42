@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "./so_long_bonus.h"
 
-int	d(void)
+int	animation_coins_ul(void)
 {
 	static int	time = 0;
 
@@ -30,7 +30,7 @@ int	animation_coins(t_window *window)
 	int	j;
 
 	i = 0;
-	if (d() == 0)
+	if (animation_coins_ul() == 0)
 		return (0);
 	window->textures.count_frames = (window->textures.count_frames += 1)
 		% COUNT_IMAGE_ANIM;
