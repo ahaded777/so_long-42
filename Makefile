@@ -9,7 +9,7 @@ OBJS = $(SRCS:.c=.o)
 #SRCS_BONUS
 SRCS_BONUS = check_map_bonus.c check_map_utils_bonus.c check_player_bonus.c \
 	check_player_ul_bonus.c close_window_bonus.c errors_bonus.c check_elements_bonus.c \
-	free_map_bonus.c read_maps_bonus.c so_long_bonus.c ft_animations_bonus.c
+	free_map_bonus.c read_maps_bonus.c so_long_bonus.c ft_animations_bonus.c so_long_bonus_ul.c
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 #GET_NEXT_LINE_SRC_OBJS

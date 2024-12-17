@@ -30,6 +30,7 @@
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
 # define COUNT_IMAGE_ANIM 6
+# define COUNT_IMAGE_PLAYER 2
 
 // typedef struct s_textures
 // {
@@ -70,6 +71,8 @@ typedef struct s_textures
 	void			*exit;
 	void			*coin_frames[COUNT_IMAGE_ANIM];
 	int				count_frames;
+	void			*player_frames[COUNT_IMAGE_PLAYER];
+	//int				count_player_frames;
 }					t_textures;
 
 typedef struct s_map_size
@@ -113,5 +116,7 @@ void				ft_check_map_v1(char **map);
 void				ft_check_map_walls(char **map);
 void				ft_check_filename(char *filename);
 int					animation_coins(t_window *window);
+void				load_textures_player(t_window *window, t_textures *textures);
+void				ft_mlx_loop_hook(t_window *window);
 
 #endif

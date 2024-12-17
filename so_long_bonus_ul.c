@@ -11,6 +11,12 @@
 /* ************************************************************************** */
 #include "./so_long_bonus.h"
 
+void	ft_mlx_loop_hook(t_window *window)
+{
+	mlx_loop_hook(window->mlx, animation_coins, window);
+	//mlx_loop_hook(window.mlx, animation_player, &window);
+}
+
 void	load_textures_player(t_window *window, t_textures *textures)
 {
 	textures->player_frames[0] = mlx_xpm_file_to_image(window->mlx,

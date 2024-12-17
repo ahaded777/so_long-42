@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "./so_long_bonus.h"
 
-void	load_textures_anim(t_window *window, t_textures *textures)
+void	load_textures_coins(t_window *window, t_textures *textures)
 {
 	textures->coin_frames[0] = mlx_xpm_file_to_image(window->mlx,
 			"./textures/cs/c_1.xpm", &window->img_width,
@@ -50,7 +50,8 @@ void	load_textures(t_window *window, t_textures *textures)
 			&window->img_width, &window->img_height);
 	textures->exit = mlx_xpm_file_to_image(window->mlx, "./textures/exit.xpm",
 			&window->img_width, &window->img_height);
-	load_textures_anim(window, textures);
+	load_textures_player(window, textures);
+	load_textures_coins(window, textures);
 	if (!textures->wall || !textures->floor || !textures->player
 		|| !textures->coin || !textures->exit)
 		print_message("Error\nFailed to load textures\n", 2);
@@ -96,7 +97,7 @@ int	main(int ac, char **av)
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
 	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress, &window);
-	mlx_loop_hook(window.mlx, animation_coins, &window);
+	ft_mlx_loop_hook(&window);
 	mlx_loop(window.mlx);
 	exit(EXIT_SUCCESS);
 }
