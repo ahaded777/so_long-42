@@ -107,7 +107,7 @@ int	all_animation(t_window *window)
 {
 	animation_coins(window);
 	window->textures.p_timer++;
-	if (window->textures.p_timer == 20000)
+	if (window->textures.p_timer == 45000)
 	{
 		animation_player_up(window);
 		animation_player(window);

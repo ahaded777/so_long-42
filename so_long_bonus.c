@@ -63,7 +63,7 @@ void	load_textures(t_window *window, t_textures *textures)
 			"./textures/p_up/pu_1.xpm", &window->img_width,
 			&window->img_height);
 	textures->p_up_frames[1] = mlx_xpm_file_to_image(window->mlx,
-			"./textures/p_up/pu_2.xpm", &window->img_width,
+			"./textures/p_up/pu_3.xpm", &window->img_width,
 			&window->img_height); 
 	/////////
 	//load_textures_player(window, textures);
@@ -121,7 +121,7 @@ int	main(int ac, char **av)
 	window.textures = textures;
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
-	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress, &window);
+	mlx_hook(window.mlx_win, KeyRelease, KeyReleaseMask, handle_keypress, &window);
 	window.textures.coin_timer = 0;
 	window.textures.p_timer = 0;
 	mlx_loop_hook(window.mlx, all_animation, &window);

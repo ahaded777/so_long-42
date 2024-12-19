@@ -26,11 +26,9 @@ void	draw_player(t_window *window, int x, int y, int keycode)
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.player, x * TILE_SIZE, y * TILE_SIZE);
 	//animation_player(window);
-	if (keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
-	{
+	if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
+		&& window->map[window->player->y - 1][window->player->x] != '1')
 		animation_player_up(window);
-		printf("heyy\n");
-	}
 	if (window->map[y][x] == 'E'
 		&& window->count_coins == window->player->coins)
 		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 2);
