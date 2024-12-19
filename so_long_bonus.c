@@ -50,7 +50,23 @@ void	load_textures(t_window *window, t_textures *textures)
 			&window->img_width, &window->img_height);
 	textures->exit = mlx_xpm_file_to_image(window->mlx, "./textures/exit.xpm",
 			&window->img_width, &window->img_height);
-	load_textures_player(window, textures);
+	// player
+	textures->player_frames[0] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/I_r/p_1.xpm", &window->img_width,
+			&window->img_height);
+	textures->player_frames[1] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/I_r/p_2.xpm", &window->img_width,
+			&window->img_height); 
+	/////////
+	// player up
+	textures->p_up_frames[0] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/p_up/pu_1.xpm", &window->img_width,
+			&window->img_height);
+	textures->p_up_frames[1] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/p_up/pu_2.xpm", &window->img_width,
+			&window->img_height); 
+	/////////
+	//load_textures_player(window, textures);
 	load_textures_coins(window, textures);
 	if (!textures->wall || !textures->floor || !textures->player
 		|| !textures->coin || !textures->exit)
@@ -75,6 +91,15 @@ void	init_environment(t_window *window, char *filename)
 		print_message("Error\nFailed to read map\n", 2);
 }
 
+void dwd(t_textures *textures)
+{
+	textures->count_frames = 0;
+	textures->count_p_frames = 0;
+	textures->count_pd_frames = 0;
+	textures->count_pl_frames = 0;
+	textures->count_pu_frames = 0;
+}
+
 int	main(int ac, char **av)
 {
 	t_window		window;
@@ -97,7 +122,7 @@ int	main(int ac, char **av)
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
 	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress, &window);
-	ft_mlx_loop_hook(&window);
+	mlx_loop_hook(window.mlx, all_animation, &window);
 	mlx_loop(window.mlx);
 	exit(EXIT_SUCCESS);
 }

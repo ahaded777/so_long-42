@@ -6,10 +6,10 @@
 /*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:30:36 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/17 16:30:38 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/19 10:24:41 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./so_long.h"
+#include "./so_long_bonus.h"
 
 void	read_map_ul(char **line, int fd_file)
 {
@@ -67,8 +67,14 @@ void	render_tile(t_window *window, t_textures textures,
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.floor,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	if (indexx->i == player.y && indexx->j == player.x)
+	{
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.player,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
+	}
+	/*	
+	mlx_put_image_to_window(window->mlx, window->mlx_win, textures.player,
+			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
+	*/
 }
 
 void	render_map(t_textures textures, t_window *window, t_player_move player)

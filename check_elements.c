@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "./so_long.h"
 
-void	check_map_elements__zayad(char **map)
+void	check_map_elements__ul(char **map)
 {
 	int	i;
 	int	j;
@@ -96,5 +96,5 @@ void	ft_check_elements(char **map)
 			2);
 	}
 	check_double_charagter(door, player, map);
-	check_map_elements__zayad(map);
+	check_map_elements__ul(map);
 }

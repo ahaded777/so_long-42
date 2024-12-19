@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_animations.c                                    :+:      :+:    :+:   */
+/*   ft_animations_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahaded <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:02:41 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/17 19:02:45 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/19 10:30:18 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./so_long_bonus.h"
 
-int	animation_coins_ul(void)
+int	ft_sleep_coins(int num)
 {
 	static int	time = 0;
-
-	if (time < 5900)
+	if (time <= num)
 	{
 		time++;
 		return (0);
@@ -30,8 +29,6 @@ int	animation_coins(t_window *window)
 	int	j;
 
 	i = 0;
-	if (animation_coins_ul() == 0)
-		return (0);
 	window->textures.count_frames = (window->textures.count_frames += 1)
 		% COUNT_IMAGE_ANIM;
 	while (window->map[i])
@@ -48,6 +45,58 @@ int	animation_coins(t_window *window)
 			j++;
 		}
 		i++;
+	}
+	return (0);
+}
+
+int	animation_player(t_window *window)
+{
+	window->textures.count_p_frames = (window->textures.count_p_frames += 1)
+		% COUNT_IMAGE_PLAYER;
+	mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.player_frames[window->textures.count_p_frames],
+		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
+	return (0);
+}
+
+int	animation_player_down(t_window *window)
+{
+	window->textures.count_pd_frames = (window->textures.count_pd_frames += 1)
+		% COUNT_IMAGE_PLAYER;
+	mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.p_down_frames[window->textures.count_pd_frames],
+		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
+	return (0);
+}
+
+int	animation_player_left(t_window *window)
+{
+	window->textures.count_pl_frames = (window->textures.count_pl_frames += 1)
+		% COUNT_IMAGE_PLAYER_DOWN;
+	mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.p_left_frames[window->textures.count_pl_frames],
+		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
+	return (0);
+}
+
+int	animation_player_up(t_window *window)
+{
+	window->textures.count_pu_frames = (window->textures.count_pu_frames += 1)
+		% COUNT_IMAGE_PLAYER_UP;
+	mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.p_up_frames[window->textures.count_pu_frames],
+		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
+	return (0);
+}
+
+int	all_animation(t_window *window)
+{
+	if (ft_sleep_coins(5900) != 0)
+	{
+		animation_player_up(window);
+		animation_player(window);
+		//animation_player_left(window);
+		animation_coins(window);
 	}
 	return (0);
 }

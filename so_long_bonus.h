@@ -6,13 +6,14 @@
 /*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:30:47 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/17 16:30:49 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/19 10:10:36 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
+#include <time.h>
 # include "./libft/get_next_line/get_next_line.h"
 # include "./libft/libft.h"
 # include <X11/X.h>
@@ -31,6 +32,10 @@
 # define RIGHT_KEY 65363
 # define COUNT_IMAGE_ANIM 6
 # define COUNT_IMAGE_PLAYER 2
+# define COUNT_IMAGE_PLAYER_DOWN 4
+# define COUNT_IMAGE_PLAYER_LEFT 4
+# define COUNT_IMAGE_PLAYER_UP 2
+
 
 // typedef struct s_textures
 // {
@@ -72,7 +77,13 @@ typedef struct s_textures
 	void			*coin_frames[COUNT_IMAGE_ANIM];
 	int				count_frames;
 	void			*player_frames[COUNT_IMAGE_PLAYER];
-	//int				count_player_frames;
+	int				count_p_frames;
+	void			*p_down_frames[COUNT_IMAGE_PLAYER_DOWN];
+	int				count_pd_frames;
+	void			*p_left_frames[COUNT_IMAGE_PLAYER_DOWN];
+	int				count_pl_frames;
+	void			*p_up_frames[COUNT_IMAGE_PLAYER_UP];
+	int				count_pu_frames;
 }					t_textures;
 
 typedef struct s_map_size
@@ -115,8 +126,14 @@ void				check_player_map(t_window window, t_player_move *player);
 void				ft_check_map_v1(char **map);
 void				ft_check_map_walls(char **map);
 void				ft_check_filename(char *filename);
-int					animation_coins(t_window *window);
-void				load_textures_player(t_window *window, t_textures *textures);
-void				ft_mlx_loop_hook(t_window *window);
+//void				load_textures_player(t_window *window, t_textures *textures);
+int				animation_coins(t_window *window);
+int				animation_player(t_window *window);
+int all_animation(t_window *window);
+int	animation_player_down(t_window *window);
+int	ft_sleep_coins(int num);
+int	animation_player_left(t_window *window);
+int	animation_player_up(t_window *window);
+
 
 #endif

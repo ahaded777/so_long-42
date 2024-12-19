@@ -6,7 +6,7 @@
 /*   By: aahaded <aahaded@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:30:03 by aahaded           #+#    #+#             */
-/*   Updated: 2024/12/17 16:30:05 by aahaded          ###   ########.fr       */
+/*   Updated: 2024/12/19 10:26:58 by aahaded          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./so_long_bonus.h"
@@ -20,10 +20,17 @@ void	eat_coins(t_window *window)
 	}
 }
 
-void	draw_player(t_window *window, int x, int y)
+void	draw_player(t_window *window, int x, int y, int keycode)
 {
+	//(void)keycode;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.player, x * TILE_SIZE, y * TILE_SIZE);
+	//animation_player(window);
+	if (keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
+	{
+		animation_player_up(window);
+		printf("heyy\n");
+	}
 	if (window->map[y][x] == 'E'
 		&& window->count_coins == window->player->coins)
 		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 2);
@@ -56,7 +63,10 @@ int	handle_keypress(int keycode, t_window *window)
 		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
 		&& window->map[window->player->y][window->player->x + 1] != '1')
+	{
 		window->player->x += 1;
+		//animation_player_left(window);
+	}
 	else if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
 		&& window->map[window->player->y][window->player->x - 1] != '1')
 		window->player->x -= 1;
@@ -67,6 +77,6 @@ int	handle_keypress(int keycode, t_window *window)
 		&& window->map[window->player->y + 1][window->player->x] != '1')
 		window->player->y += 1;
 	erase_tile(window, old_x, old_y);
-	draw_player(window, window->player->x, window->player->y);
+	draw_player(window, window->player->x, window->player->y, keycode);
 	return (0);
 }
