@@ -122,6 +122,8 @@ int	main(int ac, char **av)
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
 	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress, &window);
+	window.textures.coin_timer = 0;
+	window.textures.p_timer = 0;
 	mlx_loop_hook(window.mlx, all_animation, &window);
 	mlx_loop(window.mlx);
 	exit(EXIT_SUCCESS);

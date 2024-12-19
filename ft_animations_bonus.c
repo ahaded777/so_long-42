@@ -28,29 +28,39 @@ int	animation_coins(t_window *window)
 	int	i;
 	int	j;
 
-	i = 0;
-	window->textures.count_frames = (window->textures.count_frames += 1)
-		% COUNT_IMAGE_ANIM;
-	while (window->map[i])
+	window->textures.coin_timer++;
+	if (window->textures.coin_timer == 5200)
 	{
-		j = 0;
-		while (window->map[i][j])
+		i = 0;
+		window->textures.count_frames = (window->textures.count_frames += 1)
+			% COUNT_IMAGE_ANIM;
+		while (window->map[i])
 		{
-			if (window->map[i][j] == 'C')
+			j = 0;
+			while (window->map[i][j])
 			{
-				mlx_put_image_to_window(window->mlx, window->mlx_win,
-					window->textures.coin_frames[window->textures.count_frames],
-					j * TILE_SIZE, i * TILE_SIZE);
+				if (window->map[i][j] == 'C')
+				{
+					mlx_put_image_to_window(window->mlx, window->mlx_win,
+						window->textures.coin_frames[window->textures.count_frames],
+						j * TILE_SIZE, i * TILE_SIZE);
+				}
+				j++;
 			}
-			j++;
+			i++;
 		}
-		i++;
+		window->textures.coin_timer = 0;
 	}
 	return (0);
 }
 
 int	animation_player(t_window *window)
 {
+	// window->textures.p_timer++;
+	// if (window->textures.p_timer == 10500)
+	// {
+	// 	window->textures.p_timer = 0;
+	// }
 	window->textures.count_p_frames = (window->textures.count_p_frames += 1)
 		% COUNT_IMAGE_PLAYER;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
@@ -81,6 +91,10 @@ int	animation_player_left(t_window *window)
 
 int	animation_player_up(t_window *window)
 {
+	// window->textures.p_timer++;
+	// if (window->textures.p_timer == 9000)
+	// {
+	// }
 	window->textures.count_pu_frames = (window->textures.count_pu_frames += 1)
 		% COUNT_IMAGE_PLAYER_UP;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
@@ -91,12 +105,14 @@ int	animation_player_up(t_window *window)
 
 int	all_animation(t_window *window)
 {
-	if (ft_sleep_coins(5900) != 0)
+	animation_coins(window);
+	window->textures.p_timer++;
+	if (window->textures.p_timer == 20000)
 	{
 		animation_player_up(window);
 		animation_player(window);
-		//animation_player_left(window);
-		animation_coins(window);
+		window->textures.p_timer = 0;
 	}
+	//animation_player_left(window);
 	return (0);
 }

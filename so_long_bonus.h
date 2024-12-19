@@ -74,8 +74,11 @@ typedef struct s_textures
 	void			*player;
 	void			*coin;
 	void			*exit;
+
 	void			*coin_frames[COUNT_IMAGE_ANIM];
 	int				count_frames;
+	int				coin_timer;
+
 	void			*player_frames[COUNT_IMAGE_PLAYER];
 	int				count_p_frames;
 	void			*p_down_frames[COUNT_IMAGE_PLAYER_DOWN];
@@ -84,6 +87,7 @@ typedef struct s_textures
 	int				count_pl_frames;
 	void			*p_up_frames[COUNT_IMAGE_PLAYER_UP];
 	int				count_pu_frames;
+	int				p_timer;
 }					t_textures;
 
 typedef struct s_map_size
