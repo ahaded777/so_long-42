@@ -32,7 +32,7 @@
 # define RIGHT_KEY 65363
 # define COUNT_IMAGE_ANIM 6
 # define COUNT_IMAGE_PLAYER 2
-# define COUNT_IMAGE_PLAYER_DOWN 4
+# define COUNT_IMAGE_PLAYER_DOWN 2
 # define COUNT_IMAGE_PLAYER_LEFT 4
 # define COUNT_IMAGE_PLAYER_UP 2
 
@@ -81,7 +81,7 @@ typedef struct s_textures
 
 	void			*player_frames[COUNT_IMAGE_PLAYER];
 	int				count_p_frames;
-	void			*p_down_frames[COUNT_IMAGE_PLAYER_DOWN];
+	void			*p_down_frames[2];
 	int				count_pd_frames;
 	void			*p_left_frames[COUNT_IMAGE_PLAYER_DOWN];
 	int				count_pl_frames;

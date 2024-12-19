@@ -72,22 +72,22 @@ int	animation_player(t_window *window)
 int	animation_player_down(t_window *window)
 {
 	window->textures.count_pd_frames = (window->textures.count_pd_frames += 1)
-		% COUNT_IMAGE_PLAYER;
+		% COUNT_IMAGE_PLAYER_DOWN;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.p_down_frames[window->textures.count_pd_frames],
 		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
 	return (0);
 }
 
-int	animation_player_left(t_window *window)
-{
-	window->textures.count_pl_frames = (window->textures.count_pl_frames += 1)
-		% COUNT_IMAGE_PLAYER_DOWN;
-	mlx_put_image_to_window(window->mlx, window->mlx_win,
-		window->textures.p_left_frames[window->textures.count_pl_frames],
-		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
-	return (0);
-}
+// int	animation_player_left(t_window *window)
+// {
+// 	window->textures.count_pl_frames = (window->textures.count_pl_frames += 1)
+// 		% COUNT_IMAGE_PLAYER_DOWN;
+// 	mlx_put_image_to_window(window->mlx, window->mlx_win,
+// 		window->textures.p_left_frames[window->textures.count_pl_frames],
+// 		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
+// 	return (0);
+// }
 
 int	animation_player_up(t_window *window)
 {
@@ -109,10 +109,10 @@ int	all_animation(t_window *window)
 	window->textures.p_timer++;
 	if (window->textures.p_timer == 45000)
 	{
+		animation_player_down(window);
 		animation_player_up(window);
 		animation_player(window);
 		window->textures.p_timer = 0;
 	}
-	//animation_player_left(window);
 	return (0);
 }

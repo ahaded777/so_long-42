@@ -29,6 +29,9 @@ void	draw_player(t_window *window, int x, int y, int keycode)
 	if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
 		&& window->map[window->player->y - 1][window->player->x] != '1')
 		animation_player_up(window);
+	if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
+		&& window->map[window->player->y + 1][window->player->x] != '1')
+		animation_player_down(window);
 	if (window->map[y][x] == 'E'
 		&& window->count_coins == window->player->coins)
 		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 2);
@@ -61,10 +64,7 @@ int	handle_keypress(int keycode, t_window *window)
 		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
 		&& window->map[window->player->y][window->player->x + 1] != '1')
-	{
 		window->player->x += 1;
-		//animation_player_left(window);
-	}
 	else if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
 		&& window->map[window->player->y][window->player->x - 1] != '1')
 		window->player->x -= 1;

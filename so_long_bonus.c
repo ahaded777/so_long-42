@@ -66,6 +66,14 @@ void	load_textures(t_window *window, t_textures *textures)
 			"./textures/p_up/pu_3.xpm", &window->img_width,
 			&window->img_height); 
 	/////////
+	// player down
+	textures->p_down_frames[0] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/p_d/pd_1.xpm", &window->img_width,
+			&window->img_height);
+	textures->p_down_frames[1] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/p_d/pd_3.xpm", &window->img_width,
+			&window->img_height); 
+	/////////
 	//load_textures_player(window, textures);
 	load_textures_coins(window, textures);
 	if (!textures->wall || !textures->floor || !textures->player
@@ -91,14 +99,43 @@ void	init_environment(t_window *window, char *filename)
 		print_message("Error\nFailed to read map\n", 2);
 }
 
-void dwd(t_textures *textures)
+void initialize_structures(t_textures *textures)
 {
-	textures->count_frames = 0;
-	textures->count_p_frames = 0;
-	textures->count_pd_frames = 0;
-	textures->count_pl_frames = 0;
-	textures->count_pu_frames = 0;
+    textures->count_frames = 0;
+    textures->count_p_frames = 0;
+    textures->count_pd_frames = 0;
+    //textures->count_pl_frames = 0;
+    textures->count_pu_frames = 0;
+    textures->coin_timer = 0;
+    textures->p_timer = 0;
+    textures->wall = NULL;
+    textures->floor = NULL;
+    textures->player = NULL;
+    textures->coin = NULL;
+    textures->exit = NULL;
+	int i;
+	
+	i = 0;
+    while (i < COUNT_IMAGE_ANIM)
+	{
+        textures->coin_frames[i] = NULL;
+		i++;
+	}
+	i = 0;
+    while (i < COUNT_IMAGE_PLAYER)
+	{
+        textures->player_frames[i] = NULL;
+		i++;
+	}
+	i = 0;
+    while (i < COUNT_IMAGE_PLAYER_UP)
+    {
+        textures->p_down_frames[i] = NULL;
+        textures->p_up_frames[i] = NULL;
+		i++;
+    }
 }
+
 
 int	main(int ac, char **av)
 {
@@ -109,6 +146,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		print_message("Usage: ./so_long <map_file>\n", 2);
+	initialize_structures(&textures);
 	ft_check_filename(av[1]);
 	ft_check_map(av[1]);
 	init_environment(&window, av[1]);
