@@ -44,19 +44,8 @@ void	erase_tile(t_window *window, int x, int y)
 			* TILE_SIZE);
 }
 
-int	handle_keypress(int keycode, t_window *window)
+void	handle_keypress_ul(t_window *window, int keycode)
 {
-	int	old_x;
-	int	old_y;
-	
-	
-
-	
-	old_x = window->player->x;
-	old_y = window->player->y;
-	check_door_map(window);
-	if (keycode == ESC_KEY)
-		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
 		&& window->map[window->player->y][window->player->x + 1] != '1')
 	{
@@ -81,6 +70,19 @@ int	handle_keypress(int keycode, t_window *window)
 		window->player->y += 1;
 		window->move_count++;
 	}
+}
+
+int	handle_keypress(int keycode, t_window *window)
+{
+	int	old_x;
+	int	old_y;
+
+	old_x = window->player->x;
+	old_y = window->player->y;
+	check_door_map(window);
+	if (keycode == ESC_KEY)
+		exit(EXIT_SUCCESS);
+	handle_keypress_ul(window, keycode);
 	erase_tile(window, old_x, old_y);
 	draw_player(window, window->player->x, window->player->y);
 	ft_printf("Moves: %d\n", window->move_count);

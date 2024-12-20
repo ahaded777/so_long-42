@@ -81,10 +81,9 @@ typedef struct s_textures
 	void			*p_r_frames[COUNT_IMAGE_PLAYER_R];
 	int				count_pr_frames;
 	void			*p_en_frames[COUNT_IMAGE_ENEMY];
-	int				count_en_frames;
+	int				c_en_frames;
 	int				p_timer;
-	
-	
+
 }					t_textures;
 
 typedef struct s_map_size
@@ -132,7 +131,7 @@ void				ft_check_map_walls(char **map);
 void				ft_check_filename(char *filename);
 void				load_textures_player(t_window *window,
 						t_textures *textures);
-void	load_textures_coins(t_window *window, t_textures *textures);
+void				load_textures_coins(t_window *window, t_textures *textures);
 //void	load_textures_player_ul(t_window *window, t_textures *textures);
 int					animation_coins(t_window *window);
 int					animation_player(t_window *window);
@@ -141,8 +140,14 @@ int					animation_player_down(t_window *window);
 int					animation_player_left(t_window *window);
 int					animation_player_right(t_window *window);
 int					animation_player_up(t_window *window);
-void    initialize_structures(t_textures *textures, t_window *window);
-void	load_textures_enemy(t_window *window, t_textures *textures);
-int	animation_player_enemys(t_window *window);
+void				initialize_structures(t_textures *textures,
+						t_window *window,
+						t_player_move *player,
+						t_map_size *map_size);
+void				load_textures_enemy(t_window *window,
+						t_textures *textures);
+int					animation_player_enemys(t_window *window);
+void				initialize_structures_player(t_player_move *player);
+void				initialize_structures_map_size(t_map_size *map_size);
 
 #endif

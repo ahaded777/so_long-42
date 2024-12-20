@@ -44,7 +44,8 @@ void	init_map_data(t_window *window, t_map_size *map_size,
 	window->player = player;
 }
 
-void	init_environment(t_window *window, char *filename)
+void	init_environment(t_window *window, char *filename,
+	t_map_size *map_size, t_player_move *player)
 {
 	window->mlx = mlx_init();
 	if (!window->mlx)
@@ -52,10 +53,12 @@ void	init_environment(t_window *window, char *filename)
 	window->map = read_map(filename);
 	if (!window->map)
 		print_message("Error\nFailed to read map\n", 2);
+	init_map_data(window, map_size, player);
+	window->mlx_win = mlx_new_window(window->mlx, map_size->len_x * TILE_SIZE,
+			map_size->len_y * TILE_SIZE, "so_long 1337");
+	if (!window->mlx_win)
+		print_message("Error\nFailed to create window\n", 2);
 }
-
-
-
 
 int	main(int ac, char **av)
 {
@@ -66,21 +69,17 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		print_message("Usage: ./so_long <map_file>\n", 2);
-	initialize_structures(&textures, &window);
+	initialize_structures(&textures, &window, &player, &map_size);
 	ft_check_filename(av[1]);
 	ft_check_map(av[1]);
-	init_environment(&window, av[1]);
-	init_map_data(&window, &map_size, &player);
-	window.mlx_win = mlx_new_window(window.mlx, map_size.len_x * TILE_SIZE,
-		map_size.len_y * TILE_SIZE, "so_long 1337");
-	if (!window.mlx_win)
-		print_message("Error\nFailed to create window\n", 2);
+	init_environment(&window, av[1], &map_size, &player);
 	load_textures(&window, &textures);
 	load_textures_enemy(&window, &textures);
 	window.textures = textures;
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
-	mlx_hook(window.mlx_win, KeyRelease, KeyReleaseMask, handle_keypress, &window);
+	mlx_hook(window.mlx_win, KeyRelease, KeyReleaseMask, handle_keypress,
+		&window);
 	mlx_loop_hook(window.mlx, all_animation, &window);
 	mlx_loop(window.mlx);
 	exit(EXIT_SUCCESS);

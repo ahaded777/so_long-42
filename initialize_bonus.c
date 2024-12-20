@@ -11,79 +11,81 @@
 /* ************************************************************************** */
 #include "./so_long_bonus.h"
 
-void    initialize_structures_window(t_window *window)
+void	initialize_structures_window(t_window *window)
 {
-    window->img_width = 0;
+	window->img_width = 0;
 	window->img_height = 0;
 	window->count_coins = 0;
 	window->x = 0;
 	window->y = 0;
-    window->map = NULL;
-    window->mlx = NULL;
+	window->map = NULL;
+	window->mlx = NULL;
 	window->mlx_win = NULL;
-    window->index_door.i = 0;
+	window->index_door.i = 0;
 	window->index_door.j = 0;
-    window->move_count = 0;
+	window->move_count = 0;
 }
 
-void    initialize_structures_textures_en(t_textures *textures)
+void	initialize_structures_textures_en(t_textures *textures)
 {
-    int j;
-	
+	int	j;
+
 	j = 0;
-    while (j < COUNT_IMAGE_ENEMY)
+	while (j < COUNT_IMAGE_ENEMY)
 	{
-        textures->p_en_frames[j] = NULL;
+		textures->p_en_frames[j] = NULL;
 		j++;
 	}
-    
 }
 
-void    initialize_structures_textures_ul(t_textures *textures)
+void	initialize_structures_textures_ul(t_textures *textures)
 {
-    int i;
-	
+	int	i;
+
 	i = 0;
-    while (i < COUNT_IMAGE_ANIM)
+	while (i < COUNT_IMAGE_ANIM)
 	{
-        textures->coin_frames[i] = NULL;
+		textures->coin_frames[i] = NULL;
 		i++;
 	}
 	i = 0;
-    while (i < COUNT_IMAGE_PLAYER)
+	while (i < COUNT_IMAGE_PLAYER)
 	{
-        textures->player_frames[i] = NULL;
+		textures->player_frames[i] = NULL;
 		i++;
 	}
 	i = 0;
-    while (i < COUNT_IMAGE_PLAYER_UP)
-    {
-        textures->p_down_frames[i] = NULL;
-        textures->p_up_frames[i] = NULL;
+	while (i < COUNT_IMAGE_PLAYER_UP)
+	{
+		textures->p_down_frames[i] = NULL;
+		textures->p_up_frames[i] = NULL;
 		i++;
-    }
-    initialize_structures_textures_en(textures);
+	}
+	initialize_structures_textures_en(textures);
 }
 
-void initialize_structures_textures(t_textures *textures)
+void	initialize_structures_textures(t_textures *textures)
 {
-    textures->count_frames = 0;
-    textures->count_p_frames = 0;
-    textures->count_pd_frames = 0;
-    textures->count_pl_frames = 0;
-    textures->count_pu_frames = 0;
-    textures->coin_timer = 0;
-    textures->p_timer = 0;
-    textures->wall = NULL;
-    textures->floor = NULL;
-    textures->player = NULL;
-    textures->coin = NULL;
-    textures->exit = NULL;
+	textures->count_frames = 0;
+	textures->count_p_frames = 0;
+	textures->count_pd_frames = 0;
+	textures->count_pl_frames = 0;
+	textures->count_pu_frames = 0;
+	textures->coin_timer = 0;
+	textures->p_timer = 0;
+	textures->wall = NULL;
+	textures->floor = NULL;
+	textures->player = NULL;
+	textures->coin = NULL;
+	textures->exit = NULL;
 	initialize_structures_textures_ul(textures);
 }
 
-void    initialize_structures(t_textures *textures, t_window *window)
+void	initialize_structures(t_textures *textures, t_window *window,
+	t_player_move *player, t_map_size *map_size)
 {
-    initialize_structures_textures(textures);
-    initialize_structures_window(window);
+	initialize_structures_textures(textures);
+	initialize_structures_window(window);
+	initialize_structures_player(player);
+	initialize_structures_map_size(map_size);
 }

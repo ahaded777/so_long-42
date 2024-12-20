@@ -22,10 +22,8 @@ void	eat_coins(t_window *window)
 
 void	draw_player(t_window *window, int x, int y, int keycode)
 {
-	//(void)keycode;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.player, x * TILE_SIZE, y * TILE_SIZE);
-	//animation_player(window);
 	if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
 		&& window->map[window->player->y - 1][window->player->x] != '1')
 		animation_player_up(window);
@@ -60,16 +58,8 @@ void	erase_tile(t_window *window, int x, int y)
 			* TILE_SIZE);
 }
 
-int	handle_keypress(int keycode, t_window *window)
+void	handle_keypress_ul(t_window *window, int keycode)
 {
-	int	old_x;
-	int	old_y;
-
-	old_x = window->player->x;
-	old_y = window->player->y;
-	check_door_map(window);
-	if (keycode == ESC_KEY)
-		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
 		&& window->map[window->player->y][window->player->x + 1] != '1')
 	{
@@ -94,11 +84,20 @@ int	handle_keypress(int keycode, t_window *window)
 		window->player->y += 1;
 		window->move_count++;
 	}
+}
+
+int	handle_keypress(int keycode, t_window *window)
+{
+	int	old_x;
+	int	old_y;
+
+	old_x = window->player->x;
+	old_y = window->player->y;
+	check_door_map(window);
+	if (keycode == ESC_KEY)
+		exit(EXIT_SUCCESS);
+	handle_keypress_ul(window, keycode);
 	erase_tile(window, old_x, old_y);
 	draw_player(window, window->player->x, window->player->y, keycode);
-	window->str = ft_itoa(window->move_count);
-	printf("m: %s\n", window->str);
-	mlx_string_put(window->mlx, window->mlx_win, 30, 30, 0xFFFFFF, window->str);
-	free(window->str);
 	return (0);
 }

@@ -30,7 +30,7 @@ void	load_textures(t_window *window, t_textures *textures)
 }
 
 void	init_map_data(t_window *window, t_map_size *map_size,
-		t_player_move *player)
+	t_player_move *player)
 {
 	size_map(window, map_size);
 	check_player_map(*window, player);
@@ -65,13 +65,13 @@ int	main(int ac, char **av)
 	window.mlx_win = mlx_new_window(window.mlx, map_size.len_x * TILE_SIZE,
 			map_size.len_y * TILE_SIZE, "GAME");
 	if (!window.mlx_win)
-		print_message("Error\nFailed to create window\n",
-			2);
+		print_message("Error\nFailed to create window\n", 2);
 	load_textures(&window, &textures);
 	window.textures = textures;
 	render_map(textures, &window, player);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
-	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress, &window);
+	mlx_hook(window.mlx_win, KeyPress, KeyPressMask, handle_keypress,
+		&window);
 	mlx_loop(window.mlx);
 	exit(EXIT_SUCCESS);
 }

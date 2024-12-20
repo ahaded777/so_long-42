@@ -83,7 +83,8 @@ typedef struct s_window
 	int				move_count;
 }					t_window;
 
-void				initialize_structures(t_textures *textures, t_window *window);
+void				initialize_structures(t_textures *textures,
+						t_window *window);
 void				free_map(char **map);
 void				print_message(char *message, int fd);
 void				ft_check_map(char *filename);
