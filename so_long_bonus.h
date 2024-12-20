@@ -83,8 +83,8 @@ typedef struct s_textures
 	void			*p_en_frames[COUNT_IMAGE_ENEMY];
 	int				count_en_frames;
 	int				p_timer;
-	char			*str;
-	int				move_count;
+	
+	
 }					t_textures;
 
 typedef struct s_map_size
@@ -108,6 +108,8 @@ typedef struct s_window
 	t_map_size		*map_size;
 	t_render_index	index_door;
 	t_exit_coins	*exit_coins;
+	char			*str;
+	int				move_count;
 }					t_window;
 
 void				free_map(char **map);

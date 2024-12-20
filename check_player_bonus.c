@@ -72,20 +72,33 @@ int	handle_keypress(int keycode, t_window *window)
 		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
 		&& window->map[window->player->y][window->player->x + 1] != '1')
+	{
 		window->player->x += 1;
+		window->move_count++;
+	}
 	else if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
 		&& window->map[window->player->y][window->player->x - 1] != '1')
+	{
 		window->player->x -= 1;
+		window->move_count++;
+	}
 	else if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
 		&& window->map[window->player->y - 1][window->player->x] != '1')
+	{
 		window->player->y -= 1;
+		window->move_count++;
+	}
 	else if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
 		&& window->map[window->player->y + 1][window->player->x] != '1')
+	{
 		window->player->y += 1;
+		window->move_count++;
+	}
 	erase_tile(window, old_x, old_y);
 	draw_player(window, window->player->x, window->player->y, keycode);
-	window->textures.str = ft_itoa(window->textures.move_count);
-	mlx_string_put(window->mlx, window->mlx_win, 30, 30, 0xFFFFFF, window->textures.str);
-	free(window->textures.str);
+	window->str = ft_itoa(window->move_count);
+	printf("m: %s\n", window->str);
+	mlx_string_put(window->mlx, window->mlx_win, 30, 30, 0xFFFFFF, window->str);
+	free(window->str);
 	return (0);
 }

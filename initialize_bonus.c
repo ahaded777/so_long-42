@@ -23,7 +23,7 @@ void    initialize_structures_window(t_window *window)
 	window->mlx_win = NULL;
     window->index_door.i = 0;
 	window->index_door.j = 0;
-    //window->textures.move_count = 0;
+    window->move_count = 0;
 }
 
 void    initialize_structures_textures_en(t_textures *textures)
