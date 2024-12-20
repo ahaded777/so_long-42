@@ -15,6 +15,7 @@
 
 # include "./libft/get_next_line/get_next_line.h"
 # include "./libft/libft.h"
+# include "./libft/printf/ft_printf.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -78,8 +79,11 @@ typedef struct s_window
 	t_textures		textures;
 	t_map_size		*map_size;
 	t_render_index	index_door;
+	t_exit_coins	*exit_coins;
+	int				move_count;
 }					t_window;
 
+void				initialize_structures(t_textures *textures, t_window *window);
 void				free_map(char **map);
 void				print_message(char *message, int fd);
 void				ft_check_map(char *filename);

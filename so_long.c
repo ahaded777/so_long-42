@@ -57,6 +57,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		print_message("Usage: ./so_long <map_file>\n", 2);
+	initialize_structures(&textures, &window);
 	ft_check_filename(av[1]);
 	ft_check_map(av[1]);
 	init_environment(&window, av[1]);

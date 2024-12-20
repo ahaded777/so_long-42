@@ -48,7 +48,10 @@ int	handle_keypress(int keycode, t_window *window)
 {
 	int	old_x;
 	int	old_y;
+	
+	
 
+	
 	old_x = window->player->x;
 	old_y = window->player->y;
 	check_door_map(window);
@@ -56,17 +59,30 @@ int	handle_keypress(int keycode, t_window *window)
 		exit(EXIT_SUCCESS);
 	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
 		&& window->map[window->player->y][window->player->x + 1] != '1')
+	{
 		window->player->x += 1;
+		window->move_count++;
+	}
 	else if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
 		&& window->map[window->player->y][window->player->x - 1] != '1')
+	{
 		window->player->x -= 1;
+		window->move_count++;
+	}
 	else if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
 		&& window->map[window->player->y - 1][window->player->x] != '1')
+	{
 		window->player->y -= 1;
+		window->move_count++;
+	}
 	else if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
 		&& window->map[window->player->y + 1][window->player->x] != '1')
+	{
 		window->player->y += 1;
+		window->move_count++;
+	}
 	erase_tile(window, old_x, old_y);
 	draw_player(window, window->player->x, window->player->y);
+	ft_printf("Moves: %d\n", window->move_count);
 	return (0);
 }

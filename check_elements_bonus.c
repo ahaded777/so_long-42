@@ -23,7 +23,7 @@ void	check_map_elements__ul(char **map)
 		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (map[i][j] != 'P' && map[i][j] != 'E' && map[i][j] != 'C'
-				&& map[i][j] != '1' && map[i][j] != '0')
+				&& map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'F')
 			{
 				free_map(map);
 				print_message("Error\nThe map contains invalid elements\n", 2);

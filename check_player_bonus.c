@@ -32,9 +32,17 @@ void	draw_player(t_window *window, int x, int y, int keycode)
 	if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
 		&& window->map[window->player->y + 1][window->player->x] != '1')
 		animation_player_down(window);
+	if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
+		&& window->map[window->player->y][window->player->x - 1] != '1')
+		animation_player_left(window);
+	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
+		&& window->map[window->player->y][window->player->x + 1] != '1')
+		animation_player_right(window);
+	if (window->map[window->player->y][window->player->x] == 'F')
+		print_message("Game Over: You stepped into danger!\n", 1);
 	if (window->map[y][x] == 'E'
 		&& window->count_coins == window->player->coins)
-		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 2);
+		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 1);
 }
 
 void	erase_tile(t_window *window, int x, int y)
@@ -76,5 +84,8 @@ int	handle_keypress(int keycode, t_window *window)
 		window->player->y += 1;
 	erase_tile(window, old_x, old_y);
 	draw_player(window, window->player->x, window->player->y, keycode);
+	window->textures.str = ft_itoa(window->textures.move_count);
+	mlx_string_put(window->mlx, window->mlx_win, 30, 30, 0xFFFFFF, window->textures.str);
+	free(window->textures.str);
 	return (0);
 }

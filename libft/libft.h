@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 
+char                *ft_itoa(int n);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);
 char				**ft_split(char const *s, char c);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
