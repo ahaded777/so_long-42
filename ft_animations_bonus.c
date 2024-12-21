@@ -73,7 +73,6 @@ int	all_animation(t_window *window)
 	window->textures.p_timer++;
 	if (window->textures.p_timer == 50000)
 	{
-		mlx_string_put(window->mlx, window->mlx_win, 30, 30, 0xFFFFFF, "d");
 		animation_player_right(window);
 		animation_player_left(window);
 		animation_player_down(window);
