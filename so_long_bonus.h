@@ -132,7 +132,6 @@ void				ft_check_filename(char *filename);
 void				load_textures_player(t_window *window,
 						t_textures *textures);
 void				load_textures_coins(t_window *window, t_textures *textures);
-//void	load_textures_player_ul(t_window *window, t_textures *textures);
 int					animation_coins(t_window *window);
 int					animation_player(t_window *window);
 int					all_animation(t_window *window);
@@ -149,5 +148,6 @@ void				load_textures_enemy(t_window *window,
 int					animation_player_enemys(t_window *window);
 void				initialize_structures_player(t_player_move *player);
 void				initialize_structures_map_size(t_map_size *map_size);
+void				clear_text_area(t_window *window);
 
 #endif

@@ -99,9 +99,10 @@ int	handle_keypress(int keycode, t_window *window)
 	handle_keypress_ul(window, keycode);
 	erase_tile(window, old_x, old_y);
 	draw_player(window, window->player->x, window->player->y, keycode);
-	window->str = ft_itoa(window->move_count);
 	mlx_put_image_to_window(window->mlx, window->mlx_win, window->textures.wall,
-		0 * 64, 0 * TILE_SIZE);
+		0 * TILE_SIZE, 0 * TILE_SIZE);
+	clear_text_area(window);
+	window->str = ft_itoa(window->move_count);
 	mlx_string_put(window->mlx, window->mlx_win, 10, 30, 0xFFFFFF, "Moves: ");
 	mlx_string_put(window->mlx, window->mlx_win, 55, 30, 0XFFFFFF, window->str);
 	free(window->str);
