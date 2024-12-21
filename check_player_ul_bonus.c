@@ -13,19 +13,19 @@
 
 void	clear_text_area(t_window *window)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 10;
-	while (i < 125)
+	x = 10;
+	while (x < 125)
 	{
-		j = 20;
-		while (j < 40)
+		y = 20;
+		while (y < 40)
 		{
-			mlx_pixel_put(window->mlx, window->mlx_win, i, j, 0x000000);
-			j++;
+			mlx_pixel_put(window->mlx, window->mlx_win, x, y, 0x000000);
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
 
