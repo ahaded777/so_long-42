@@ -116,7 +116,7 @@ void				print_message(char *message, int fd);
 void				ft_check_map(char *filename);
 char				**read_map(char *filename);
 int					ft_check_wall_up(char **map);
-int					close_window(void *par);
+int					close_window(void);
 int					handle_keypress(int keycode, t_window *window);
 void				size_map(t_window *window, t_map_size *map_size);
 void				check_player_map(t_window window, t_player_move *player);

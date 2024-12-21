@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 #include "./so_long.h"
 
-int	close_window(void *par)
+int	close_window(void)
 {
-	(void)par;
 	exit(EXIT_SUCCESS);
 	return (0);
 }
