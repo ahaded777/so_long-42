@@ -19,8 +19,8 @@ void	initialize_structures_window(t_window *window)
 	window->img_width = 0;
 	window->img_height = 0;
 	window->count_coins = 0;
-	window->x = 0;
-	window->y = 0;
+	window->x_door = 0;
+	window->y_door = 0;
 	window->index_door.i = 0;
 	window->index_door.j = 0;
 	window->move_count = 0;

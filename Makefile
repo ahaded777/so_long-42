@@ -29,10 +29,10 @@ PATH_PRINTF = $(PATH_LIBFT)/printf
 PRINTF_AR = $(PATH_PRINTF)/libftprintf.a
 
 #MINILIBX
-LIBS =  -lmlx -lXext -lX11 -lm -lbsd 
+LIBS =  -lmlx -lXext -lX11 -lm -lbsd
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror  -g3 -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all: $(NAME)
 

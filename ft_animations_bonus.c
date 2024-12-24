@@ -13,7 +13,7 @@
 
 int	animation_player_left(t_window *window)
 {
-	window->textures.count_pl_frames = (window->textures.count_pl_frames += 1)
+	window->textures.count_pl_frames = (window->textures.count_pl_frames + 1)
 		% COUNT_IMAGE_PLAYER_LEFT;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.p_left_frames[window->textures.count_pl_frames],
@@ -23,7 +23,7 @@ int	animation_player_left(t_window *window)
 
 int	animation_player_right(t_window *window)
 {
-	window->textures.count_pr_frames = (window->textures.count_pr_frames += 1)
+	window->textures.count_pr_frames = (window->textures.count_pr_frames + 1)
 		% COUNT_IMAGE_PLAYER_R;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.p_r_frames[window->textures.count_pr_frames],
@@ -33,52 +33,72 @@ int	animation_player_right(t_window *window)
 
 int	animation_player_up(t_window *window)
 {
-	window->textures.count_pu_frames = (window->textures.count_pu_frames += 1)
+	window->textures.count_pu_frames = (window->textures.count_pu_frames + 1)
 		% COUNT_IMAGE_PLAYER_UP;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.p_up_frames[window->textures.count_pu_frames],
 		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
 	return (0);
 }
-
 int	animation_player_enemys(t_window *window)
 {
-	int	i;
-	int	j;
+   static int delay_timer = 0;
+    if (delay_timer < 120)
+    {
+        delay_timer++;
+        return (0);
+    }
+	
+    window->textures.timer_enemys++;
+    if (window->textures.timer_enemys >= 35000)
+    {
+        int	i;
+        int	j;
 
-	i = 0;
-	window->textures.c_en_frames = (window->textures.c_en_frames += 1)
-		% COUNT_IMAGE_ENEMY;
-	while (window->map[i])
-	{
-		j = 0;
-		while (window->map[i][j])
-		{
-			if (window->map[i][j] == 'F')
-			{
-				mlx_put_image_to_window(window->mlx, window->mlx_win,
-					window->textures.p_en_frames[window->textures.c_en_frames],
-					j * TILE_SIZE, i * TILE_SIZE);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
+        i = 0;
+        window->textures.c_en_frames = (window->textures.c_en_frames + 1)
+            % COUNT_IMAGE_ENEMY;
+        while (window->map[i])
+        {
+            j = 0;
+            while (window->map[i][j])
+            {
+                if (window->map[i][j] == 'F')
+                {
+                    mlx_put_image_to_window(window->mlx, window->mlx_win,
+                        window->textures.p_en_frames[window->textures.c_en_frames],
+                        j * TILE_SIZE, i * TILE_SIZE);
+                }
+                j++;
+            }
+            i++;
+        }
+        window->textures.timer_enemys = 0;
+		delay_timer = 0;
+    }
+    return (0);
 }
+
 
 int	all_animation(t_window *window)
 {
 	animation_coins(window);
-	window->textures.p_timer++;
-	if (window->textures.p_timer == 50000)
+	window->textures.timer_player++;
+	if (window->textures.timer_player >= 25000)
 	{
 		animation_player_right(window);
 		animation_player_left(window);
 		animation_player_down(window);
 		animation_player_up(window);
 		animation_player(window);
-		window->textures.p_timer = 0;
+		window->textures.timer_player = 0;
 	}
+	animation_player_enemys(window);
+	if (window->map[window->player->y][window->player->x] == 'F')
+		mlx_put_image_to_window(window->mlx, window->mlx_win,
+		window->textures.player, window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
+	if (window->map[window->player->y][window->player->x] == 'F'
+		&& window->textures.c_en_frames != 0)
+		print_message("Game Over: You stepped into danger!\n", 1);
 	return (0);
 }

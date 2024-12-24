@@ -37,7 +37,7 @@
 # define COUNT_IMAGE_PLAYER_LEFT 1
 # define COUNT_IMAGE_PLAYER_UP 2
 # define COUNT_IMAGE_PLAYER_R 1
-# define COUNT_IMAGE_ENEMY 3
+# define COUNT_IMAGE_ENEMY 4
 
 typedef struct s_exit_coins
 {
@@ -82,7 +82,13 @@ typedef struct s_textures
 	int				count_pr_frames;
 	void			*p_en_frames[COUNT_IMAGE_ENEMY];
 	int				c_en_frames;
-	int				p_timer;
+	int				timer_left;
+	int				timer_right;
+	int				timer_enemys;
+	int				timer_up;
+	int				timer_down;
+	int				timer_player;
+	int				timer_enemys_test;
 
 }					t_textures;
 
@@ -100,8 +106,8 @@ typedef struct s_window
 	int				img_width;
 	int				img_height;
 	int				count_coins;
-	int				x;
-	int				y;
+	int				x_door;
+	int				y_door;
 	t_player_move	*player;
 	t_textures		textures;
 	t_map_size		*map_size;
@@ -119,7 +125,6 @@ int					ft_check_wall_up(char **map);
 int					close_window(void);
 int					handle_keypress(int keycode, t_window *window);
 void				size_map(t_window *window, t_map_size *map_size);
-void				check_player_map(t_window window, t_player_move *player);
 void				render_map(t_textures textures, t_window *window,
 						t_player_move player);
 void				ft_check_elements(char **map);
@@ -149,5 +154,7 @@ int					animation_player_enemys(t_window *window);
 void				initialize_structures_player(t_player_move *player);
 void				initialize_structures_map_size(t_map_size *map_size);
 void				clear_text_area(t_window *window);
+
+void	initialize_structures_window(t_window *window);
 
 #endif

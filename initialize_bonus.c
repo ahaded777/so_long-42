@@ -16,8 +16,8 @@ void	initialize_structures_window(t_window *window)
 	window->img_width = 0;
 	window->img_height = 0;
 	window->count_coins = 0;
-	window->x = 0;
-	window->y = 0;
+	window->x_door = 0;
+	window->y_door = 0;
 	window->map = NULL;
 	window->mlx = NULL;
 	window->mlx_win = NULL;
@@ -72,7 +72,13 @@ void	initialize_structures_textures(t_textures *textures)
 	textures->count_pl_frames = 0;
 	textures->count_pu_frames = 0;
 	textures->coin_timer = 0;
-	textures->p_timer = 0;
+	textures->timer_left = 0;
+	textures->timer_right = 0;
+	textures->timer_enemys = 0;
+	textures->timer_up = 0;
+	textures->timer_down = 0;
+	textures->timer_player = 0;
+	textures->timer_enemys_test = 0;
 	textures->wall = NULL;
 	textures->floor = NULL;
 	textures->player = NULL;

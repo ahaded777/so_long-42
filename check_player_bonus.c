@@ -22,39 +22,38 @@ void	eat_coins(t_window *window)
 
 void	draw_player(t_window *window, int x, int y, int keycode)
 {
+	(void)keycode;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.player, x * TILE_SIZE, y * TILE_SIZE);
-	if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
-		&& window->map[window->player->y - 1][window->player->x] != '1')
-		animation_player_up(window);
-	if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
-		&& window->map[window->player->y + 1][window->player->x] != '1')
-		animation_player_down(window);
-	if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
-		&& window->map[window->player->y][window->player->x - 1] != '1')
-		animation_player_left(window);
-	if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
-		&& window->map[window->player->y][window->player->x + 1] != '1')
-		animation_player_right(window);
-	if (window->map[window->player->y][window->player->x] == 'F')
-		print_message("Game Over: You stepped into danger!\n", 1);
+	// if ((keycode == 'W' || keycode == 'w' || keycode == UP_KEY)
+	// 	&& window->map[window->player->y - 1][window->player->x] != '1')
+	// 	animation_player_up(window);
+	// if ((keycode == 'S' || keycode == 's' || keycode == DOWN_KEY)
+	// 	&& window->map[window->player->y + 1][window->player->x] != '1')
+	// 	animation_player_down(window);
+	// if ((keycode == 'A' || keycode == 'a' || keycode == LEFT_KEY)
+	// 	&& window->map[window->player->y][window->player->x - 1] != '1')
+	// 	animation_player_left(window);
+	// if ((keycode == 'D' || keycode == 'd' || keycode == RIGHT_KEY)
+	// 	&& window->map[window->player->y][window->player->x + 1] != '1')
+	// 	animation_player_right(window);
 	if (window->map[y][x] == 'E'
 		&& window->count_coins == window->player->coins)
 		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 1);
 }
 
-void	erase_tile(t_window *window, int x, int y)
+void	erase_tile(t_window *window, int x_old, int y_old)
 {
 	eat_coins(window);
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
-		window->textures.floor, x * TILE_SIZE, y * TILE_SIZE);
+		window->textures.floor, x_old * TILE_SIZE, y_old * TILE_SIZE);
 	if (window->count_coins == window->player->coins)
 		mlx_put_image_to_window(window->mlx, window->mlx_win,
-			window->textures.exit, window->x * TILE_SIZE, window->y
+			window->textures.exit, window->x_door * TILE_SIZE, window->y_door
 			* TILE_SIZE);
 	else
 		mlx_put_image_to_window(window->mlx, window->mlx_win,
-			window->textures.floor, window->x * TILE_SIZE, window->y
+			window->textures.floor, window->x_door * TILE_SIZE, window->y_door
 			* TILE_SIZE);
 }
 

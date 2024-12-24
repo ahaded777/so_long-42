@@ -42,8 +42,8 @@ void	check_door_map(t_window *window)
 		{
 			if (window->map[y][x] == 'E')
 			{
-				window->x = x;
-				window->y = y;
+				window->x_door = x;
+				window->y_door = y;
 			}
 			x++;
 		}

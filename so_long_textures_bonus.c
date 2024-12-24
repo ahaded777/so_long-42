@@ -14,16 +14,19 @@
 void	load_textures_enemy(t_window *window, t_textures *textures)
 {
 	textures->p_en_frames[0] = mlx_xpm_file_to_image(window->mlx,
-			"./textures/ene_/en_1.xpm", &window->img_width,
+			"./textures/ene_/en_0.xpm", &window->img_width,
 			&window->img_height);
 	textures->p_en_frames[1] = mlx_xpm_file_to_image(window->mlx,
-			"./textures/ene_/en_2.xpm", &window->img_width,
+			"./textures/ene_/en_1.xpm", &window->img_width,
 			&window->img_height);
 	textures->p_en_frames[2] = mlx_xpm_file_to_image(window->mlx,
+			"./textures/ene_/en_2.xpm", &window->img_width,
+			&window->img_height);
+	textures->p_en_frames[3] = mlx_xpm_file_to_image(window->mlx,
 			"./textures/ene_/en_3.xpm", &window->img_width,
 			&window->img_height);
 	if (!textures->p_en_frames[0] || !textures->p_en_frames[1]
-		|| !textures->p_en_frames[2])
+		|| !textures->p_en_frames[2] || !textures->p_en_frames[3])
 		print_message("Error\nFailed to load textures\n", 2);
 }
 

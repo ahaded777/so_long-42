@@ -37,10 +37,9 @@ void	animation_coins_ul(t_window *window)
 int	animation_coins(t_window *window)
 {
 	window->textures.coin_timer++;
-	if (window->textures.coin_timer == 5500)
+	if (window->textures.coin_timer >= 5800)
 	{
-		animation_player_enemys(window);
-		window->textures.count_frames = (window->textures.count_frames += 1)
+		window->textures.count_frames = (window->textures.count_frames + 1)
 			% COUNT_IMAGE_ANIM;
 		animation_coins_ul(window);
 		window->textures.coin_timer = 0;
@@ -50,7 +49,7 @@ int	animation_coins(t_window *window)
 
 int	animation_player(t_window *window)
 {
-	window->textures.count_p_frames = (window->textures.count_p_frames += 1)
+	window->textures.count_p_frames = (window->textures.count_p_frames + 1)
 		% COUNT_IMAGE_PLAYER;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.player_frames[window->textures.count_p_frames],
@@ -60,7 +59,7 @@ int	animation_player(t_window *window)
 
 int	animation_player_down(t_window *window)
 {
-	window->textures.count_pd_frames = (window->textures.count_pd_frames += 1)
+	window->textures.count_pd_frames = (window->textures.count_pd_frames + 1)
 		% COUNT_IMAGE_PLAYER_DOWN;
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
 		window->textures.p_down_frames[window->textures.count_pd_frames],

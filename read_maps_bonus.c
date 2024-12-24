@@ -32,7 +32,7 @@ char	**read_map(char *filename)
 	fd_file = open(filename, O_RDONLY);
 	if (fd_file == -1)
 		print_message("Error\nopening file\n", 2);
-	res_map = malloc(sizeof(char *) * 100);
+	res_map = malloc((sizeof(char *) * 100000));
 	if (!res_map)
 	{
 		close(fd_file);
@@ -67,7 +67,8 @@ void	render_tile(t_window *window, t_textures textures,
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.floor,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	else if (window->map[indexx->i][indexx->j] == 'F')
-		animation_player_enemys(window);
+		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.p_en_frames[0],
+			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	if (indexx->i == player.y && indexx->j == player.x)
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.player,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);

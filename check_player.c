@@ -29,18 +29,18 @@ void	draw_player(t_window *window, int x, int y)
 		print_message("\033[0;92m-------> YOU WIN\n\033[0;39m", 2);
 }
 
-void	erase_tile(t_window *window, int x, int y)
+void	erase_tile(t_window *window, int old_x, int old_y)
 {
 	eat_coins(window);
 	mlx_put_image_to_window(window->mlx, window->mlx_win,
-		window->textures.floor, x * TILE_SIZE, y * TILE_SIZE);
+		window->textures.floor, old_x * TILE_SIZE, old_y * TILE_SIZE);
 	if (window->count_coins == window->player->coins)
 		mlx_put_image_to_window(window->mlx, window->mlx_win,
-			window->textures.exit, window->x * TILE_SIZE, window->y
+			window->textures.exit, window->x_door * TILE_SIZE, window->y_door
 			* TILE_SIZE);
 	else
 		mlx_put_image_to_window(window->mlx, window->mlx_win,
-			window->textures.floor, window->x * TILE_SIZE, window->y
+			window->textures.floor, window->x_door * TILE_SIZE, window->y_door
 			* TILE_SIZE);
 }
 

@@ -24,7 +24,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define ESC_KEY 65307
 # define UP_KEY 65362
 # define DOWN_KEY 65364
@@ -73,8 +73,8 @@ typedef struct s_window
 	int				img_width;
 	int				img_height;
 	int				count_coins;
-	int				x;
-	int				y;
+	int				x_door;
+	int				y_door;
 	t_player_move	*player;
 	t_textures		textures;
 	t_map_size		*map_size;
