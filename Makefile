@@ -32,7 +32,7 @@ PRINTF_AR = $(PATH_PRINTF)/libftprintf.a
 LIBS =  -lmlx -lXext -lX11 -lm -lbsd
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
