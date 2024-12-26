@@ -29,7 +29,7 @@ PATH_PRINTF = $(PATH_LIBFT)/printf
 PRINTF_AR = $(PATH_PRINTF)/libftprintf.a
 
 #MINILIBX
-LIBS =  -lmlx -lXext -lX11 -lm -lbsd
+LIBS =  -lmlx -lXext -lX11
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -37,28 +37,28 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_GET_LINE)
-	make -C $(PATH_LIBFT)
-	make -C $(PATH_PRINTF)
-	$(CC) $(CFLAGS) $(OBJS)  $(LIBS) $(LIBFT_AR) $(PRINTF_AR) $(OBJS_GET_LINE) -o $(NAME) 
+	@make -C $(PATH_LIBFT)
+	@make -C $(PATH_PRINTF)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(LIBFT_AR) $(PRINTF_AR) $(OBJS_GET_LINE) -o $(NAME) 
 
 bonus: so_long_bonus
 
 so_long_bonus: $(OBJS_BONUS) $(OBJS_GET_LINE)
-	make -C $(PATH_LIBFT)
-	make -C $(PATH_PRINTF)
-	$(CC) $(CFLAGS) $(OBJS_BONUS)  $(LIBS) $(LIBFT_AR) $(PRINTF_AR) $(OBJS_GET_LINE) -o $(NAME) 
+	@make -C $(PATH_LIBFT)
+	@make -C $(PATH_PRINTF)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBS) $(LIBFT_AR) $(PRINTF_AR) $(OBJS_GET_LINE) -o $(NAME) 
 
 
 clean:
-	make clean -C $(PATH_LIBFT)
-	make clean -C $(PATH_PRINTF)
-	rm -f $(OBJS_GET_LINE)
-	rm -f $(OBJS)
-	rm -f $(OBJS_BONUS)
+	@make clean -C $(PATH_LIBFT)
+	@make clean -C $(PATH_PRINTF)
+	@rm -f $(OBJS_GET_LINE)
+	@rm -f $(OBJS)
+	@rm -f $(OBJS_BONUS)
 
 fclean: clean
-	make fclean -C $(PATH_LIBFT) 
-	make fclean -C $(PATH_PRINTF)
-	rm -f $(NAME)
+	@make fclean -C $(PATH_LIBFT) 
+	@make fclean -C $(PATH_PRINTF)
+	@rm -f $(NAME)
 
 re: fclean all

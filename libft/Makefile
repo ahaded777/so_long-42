@@ -10,7 +10,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
-AR = ar -rcs
+AR = ar -rc
 H_LIBFT = libft.h
 
 all:	$(NAME)

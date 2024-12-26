@@ -66,6 +66,7 @@ void	initialize_structures_textures_ul(t_textures *textures)
 
 void	initialize_structures_textures(t_textures *textures)
 {
+	textures->c_en_frames = 0;
 	textures->count_frames = 0;
 	textures->count_p_frames = 0;
 	textures->count_pd_frames = 0;

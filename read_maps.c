@@ -32,7 +32,7 @@ char	**read_map(char *filename)
 	fd_file = open(filename, O_RDONLY);
 	if (fd_file == -1)
 		print_message("Error\nopening file\n", 2);
-	res_map = malloc(sizeof(char *) * 100);
+	res_map = malloc(sizeof(char *) * 100000);
 	if (!res_map)
 	{
 		close(fd_file);
