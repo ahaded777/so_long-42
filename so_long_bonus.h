@@ -125,8 +125,7 @@ int					ft_check_wall_up(char **map);
 int					close_window(void);
 int					handle_keypress(int keycode, t_window *window);
 void				size_map(t_window *window, t_map_size *map_size);
-void				render_map(t_textures textures, t_window *window,
-						t_player_move player);
+void				render_map(t_textures textures, t_window *window);
 void				ft_check_elements(char **map);
 void				check_door_map(t_window *window);
 void				check_player_map(t_window window, t_player_move *player);
@@ -155,6 +154,7 @@ void				initialize_structures_player(t_player_move *player);
 void				initialize_structures_map_size(t_map_size *map_size);
 void				clear_text_area(t_window *window);
 
-void	initialize_structures_window(t_window *window);
+void				initialize_structures_window(t_window *window);
+void				animation_player_enemys_ul(t_window *window);
 
 #endif

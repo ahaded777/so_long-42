@@ -51,7 +51,7 @@ char	**read_map(char *filename)
 }
 
 void	render_tile(t_window *window, t_textures textures,
-		t_render_index *indexx, t_player_move player)
+		t_render_index *indexx)
 {
 	if (window->map[indexx->i][indexx->j] == '1')
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.wall,
@@ -67,14 +67,12 @@ void	render_tile(t_window *window, t_textures textures,
 		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.floor,
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 	else if (window->map[indexx->i][indexx->j] == 'F')
-		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.p_en_frames[0],
-			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
-	if (indexx->i == player.y && indexx->j == player.x)
-		mlx_put_image_to_window(window->mlx, window->mlx_win, textures.player,
+		mlx_put_image_to_window(window->mlx, window->mlx_win,
+			textures.p_en_frames[0],
 			indexx->j * TILE_SIZE, indexx->i * TILE_SIZE);
 }
 
-void	render_map(t_textures textures, t_window *window, t_player_move player)
+void	render_map(t_textures textures, t_window *window)
 {
 	t_render_index	index;
 
@@ -84,7 +82,7 @@ void	render_map(t_textures textures, t_window *window, t_player_move player)
 		index.j = 0;
 		while (window->map[index.i][index.j])
 		{
-			render_tile(window, textures, &index, player);
+			render_tile(window, textures, &index);
 			index.j++;
 		}
 		index.i++;

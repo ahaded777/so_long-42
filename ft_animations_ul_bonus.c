@@ -66,3 +66,28 @@ int	animation_player_down(t_window *window)
 		window->player->x * TILE_SIZE, window->player->y * TILE_SIZE);
 	return (0);
 }
+
+void	animation_player_enemys_ul(t_window *window)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	window->textures.c_en_frames = (window->textures.c_en_frames + 1)
+		% COUNT_IMAGE_ENEMY;
+	while (window->map[i])
+	{
+		j = 0;
+		while (window->map[i][j])
+		{
+			if (window->map[i][j] == 'F')
+			{
+				mlx_put_image_to_window(window->mlx, window->mlx_win,
+					window->textures.p_en_frames[window->textures.c_en_frames],
+					j * TILE_SIZE, i * TILE_SIZE);
+			}
+			j++;
+		}
+		i++;
+	}
+}

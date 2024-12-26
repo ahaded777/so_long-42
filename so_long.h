@@ -24,7 +24,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define ESC_KEY 65307
 # define UP_KEY 65362
 # define DOWN_KEY 65364

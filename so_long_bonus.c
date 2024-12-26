@@ -76,7 +76,7 @@ int	main(int ac, char **av)
 	load_textures(&window, &textures);
 	load_textures_enemy(&window, &textures);
 	window.textures = textures;
-	render_map(textures, &window, player);
+	render_map(textures, &window);
 	mlx_hook(window.mlx_win, 17, 0, close_window, NULL);
 	mlx_hook(window.mlx_win, KeyRelease, KeyReleaseMask, handle_keypress,
 		&window);
