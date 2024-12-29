@@ -1,7 +1,5 @@
 # 🕹️ so_long
 
-## 📸 Game Screenshot
-
 ![Game Screenshot](assets/image.png)
 
 Here is a preview of the **so_long** game. Navigate through the map, collect items, and avoid obstacles to win!
@@ -20,7 +18,6 @@ Welcome to **so_long**, a 2D game project from **1337 School** where you explore
 6. [Game Controls](#-game-controls)
 7. [Project Structure](#-project-structure)
 8. [Resources](#-resources)
-9. [License](#-license)
 
 ---
 
@@ -70,6 +67,7 @@ Clone this repository to your local machine:
 ```bash
 git clone git@github.com:ahaded777/so_long-42.git
 cd so_long-42
+```
 
 ## 🛠️ Compile the Game
 
@@ -146,5 +144,3 @@ so_long/
 - [Game Development Tutorials](https://www.gamedev.net/)
 
 Enjoy the game and have fun coding!
-
-
