@@ -1,6 +1,12 @@
 # 🕹️ so_long
 
-Welcome to **so_long**, a 2D game project from **42 School** where you explore a small map, collect items, and reach the exit while mastering C programming and the **MiniLibX** graphical library. This project also includes a **Bonus** version for additional challenges and features. 🚀
+## 📸 Game Screenshot
+
+![Game Screenshot](Screenshot from 2024-12-29 21-25-06.png)
+
+Here is a preview of the **so_long** game. Navigate through the map, collect items, and avoid obstacles to win!
+
+Welcome to **so_long**, a 2D game project from **1337 School** where you explore a small map, collect items, and reach the exit while mastering C programming and the **MiniLibX** graphical library. This project also includes a **Bonus** version for additional challenges and features. 🚀
 
 ---
 
