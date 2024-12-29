@@ -2,7 +2,7 @@
 
 ## 📸 Game Screenshot
 
-![Game Screenshot](Screenshot from 2024-12-29 21-25-06.png)
+![Game Screenshot](assets/image.png)
 
 Here is a preview of the **so_long** game. Navigate through the map, collect items, and avoid obstacles to win!
 
